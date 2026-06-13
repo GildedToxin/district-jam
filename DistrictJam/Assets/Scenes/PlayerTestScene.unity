@@ -2207,6 +2207,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SAP
       objectReference: {fileID: 0}
+    - target: {fileID: 4490959707906570462, guid: a734a8d9f50a8eb439bdf7f3e6a42f27, type: 3}
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5133526940199397955, guid: a734a8d9f50a8eb439bdf7f3e6a42f27, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4

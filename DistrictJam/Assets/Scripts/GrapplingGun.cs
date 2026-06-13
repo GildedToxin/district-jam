@@ -47,6 +47,7 @@ public class GrapplingGun : MonoBehaviour
         if (isLaunchSuccessful)
         {
             StartGrapple();
+            _launcherTransform.localRotation = Quaternion.Euler(0, 0, 0);
         }
         else
         {
@@ -179,7 +180,7 @@ public class GrapplingGun : MonoBehaviour
     {
         _launcherTransform.parent = transform;
         _launcherTransform.localPosition = _launcherOffset;
-        _launcherTransform.localRotation = Quaternion.Euler(0, 0, 90f);
+        _launcherTransform.localRotation = Quaternion.Euler(0, 0, 0);
         _reatactionTimer = 0;
         CurrentGrapplePhase = GrapplePhase.Waiting;
         GrapplePhaseChanged?.Invoke(GrapplePhase.Retracting);
