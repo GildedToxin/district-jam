@@ -13,6 +13,7 @@ public class AirBoost : MonoBehaviour
     private float airBoostMaxForce = 1000f;
     private bool canBoost = true;
     private bool resetBoostScheduled = false;
+    private bool isCharging = false;
 
     void Start()
     {
