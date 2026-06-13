@@ -1,72 +1,189 @@
 using UnityEngine;
+using System;
 
 public class GrapplingGun : MonoBehaviour
 {
-    [SerializeField] private float _grappleDistance;
-    
-    public bool IsGrappling;
-    public Vector3 grapplePoint;
-    private Movement _movement;
-    private Rigidbody rb;
 
-    private bool _isApplyingGrappleForce;
-    private void Start()
+    public event Action<GrapplePhase> GrapplePhaseChanged;
+
+    public Vector3 GrapplePoint { get; private set; }
+    public GrapplePhase CurrentGrapplePhase { get; private set; }
+
+    public enum GrapplePhase
     {
-        _movement = GetComponentInParent<Movement>();
-        rb = GetComponentInParent<Rigidbody>();
+        Waiting,
+        Launching,
+        Grappling,
+        Retracting
     }
-    private void Update()
+
+    [SerializeField] private float _reelInAcceleration;
+    [SerializeField] private float _retractionTime;
+    [SerializeField] private Transform _launcherTransform;
+
+    private Movement _playerMovement;
+    private Rigidbody _playerRigidbody;
+
+    private bool _isApplyingGrappleForces;
+
+    private float _ropeLength;
+    private bool _isRopeInTension;
+
+    private float _reelInSpeed;
+    private bool _isReelingIn;
+
+    private Vector3 _launcherOffset;
+    private float _reatactionTimer;
+
+    public void LaunchFinished(bool isLaunchSuccessful, Vector3 grapplePoint)
     {
-        if(Input.GetMouseButtonDown(0))
+        if (CurrentGrapplePhase != GrapplePhase.Launching)
+        {
+            return;
+        }
+
+        GrapplePoint = grapplePoint;
+
+        if (isLaunchSuccessful)
         {
             StartGrapple();
         }
-
-        if (Input.GetMouseButton(0))
-        {
-            if (IsGrappling)
-            {
-                _isApplyingGrappleForce = true;
-            }
-        }
         else
         {
-            IsGrappling = false;
-            _movement.canMove = true;
-            _isApplyingGrappleForce = false;
+            CurrentGrapplePhase = GrapplePhase.Retracting;
+            GrapplePhaseChanged?.Invoke(GrapplePhase.Launching);
         }
-        
     }
+
+    private void Start()
+    {
+        _playerMovement = transform.parent.GetComponentInParent<Movement>();
+        _playerRigidbody = transform.parent.GetComponentInParent<Rigidbody>();
+
+        CurrentGrapplePhase = GrapplePhase.Waiting;
+
+        _launcherOffset = _launcherTransform.localPosition;
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && CurrentGrapplePhase == GrapplePhase.Waiting)
+        {
+            CurrentGrapplePhase = GrapplePhase.Launching;
+            GrapplePhaseChanged?.Invoke(GrapplePhase.Waiting);
+        }
+
+        if (CurrentGrapplePhase == GrapplePhase.Grappling)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                _isApplyingGrappleForces = true;
+
+                _isRopeInTension = _ropeLength * _ropeLength < (GrapplePoint - _playerRigidbody.position).sqrMagnitude;
+            }
+            else
+            {
+                _isApplyingGrappleForces = false;
+                _playerMovement.canMove = true;
+
+                CurrentGrapplePhase = GrapplePhase.Retracting;
+                GrapplePhaseChanged?.Invoke(GrapplePhase.Grappling);
+            }
+        }
+
+        if (CurrentGrapplePhase == GrapplePhase.Retracting)
+        {
+            if (_reatactionTimer < _retractionTime)
+            {
+                _reatactionTimer += Time.deltaTime;
+
+                float t = _reatactionTimer / _retractionTime;
+                Vector3 finalPosition = _playerRigidbody.position + _launcherOffset;
+
+                _launcherTransform.position = Vector3.Lerp(GrapplePoint, finalPosition, t);
+            }
+            else
+            {
+                ResetGrapplingGun();
+            }
+        }
+    }
+
     private void FixedUpdate()
     {
-        if (_isApplyingGrappleForce)
-            ApplyGrappleForce();
-
-    }
-    private void ApplyGrappleForce()
-    {
-        Vector3 displacement = grapplePoint - rb.position;
-        float theta = Vector3.Angle(displacement, Vector3.up) * Mathf.Deg2Rad;
-
-        float centripetalAcceleration = rb.linearVelocity.sqrMagnitude / displacement.magnitude;
-        Vector3 tension = rb.mass * (centripetalAcceleration + Physics.gravity.magnitude * Mathf.Cos(theta)) *displacement.normalized;
-
-        rb.AddForce(tension, ForceMode.Force);
-    }
-    private void StartGrapple()
-    {
-        if (IsGrappling)
-            return;
-
-        RaycastHit hit;
-        if (Physics.Raycast(transform.parent.position, transform.parent.forward, out hit, _grappleDistance))
+        if (_isApplyingGrappleForces)
         {
-            IsGrappling = true;
-            grapplePoint = hit.point;
-            _movement.canMove = false;
-            
-            rb.linearVelocity = Vector3.zero; // Reset velocity to prevent unwanted momentum when starting the grapple
+            ApplyGrappleForces();
 
+            if (Vector3.Dot(_playerRigidbody.linearVelocity, GrapplePoint - _playerRigidbody.position) <= 0 && _isRopeInTension)
+            {
+                TugPlayer();
+            }
+
+            if (_ropeLength > 1.5f && _isReelingIn)
+            {
+                _reelInSpeed += _reelInAcceleration * Time.fixedDeltaTime;
+                _ropeLength -= _reelInSpeed * Time.fixedDeltaTime;
+            }
+            else
+            {
+                _isReelingIn = false;
+                _ropeLength = 1.5f;
+            }
         }
     }
+
+    private void StartGrapple()
+    {
+        _playerMovement.canMove = false;
+        _ropeLength = (GrapplePoint - _playerRigidbody.position).magnitude;
+        _isReelingIn = true;
+        _reelInSpeed = 0;
+
+        CurrentGrapplePhase = GrapplePhase.Grappling;
+        GrapplePhaseChanged?.Invoke(GrapplePhase.Launching);
+    }
+
+    private void ApplyGrappleForces()
+    {
+        Vector3 direction = (GrapplePoint - _playerRigidbody.position).normalized;
+        float theta = Vector3.Angle(direction, Vector3.up) * Mathf.Deg2Rad;
+
+        float centripetalAcceleration = _playerRigidbody.linearVelocity.sqrMagnitude / _ropeLength;
+        Vector3 tension = _playerRigidbody.mass * (centripetalAcceleration + Physics.gravity.magnitude * Mathf.Cos(theta)) * direction;
+
+        if (_isRopeInTension)
+        {
+            if (_isReelingIn)
+            {
+                _playerRigidbody.AddForce(_playerRigidbody.mass * _reelInAcceleration * direction);
+            }
+
+            _playerRigidbody.AddForce(tension, ForceMode.Force);
+        }
+    }
+
+    private void TugPlayer()
+    {
+        Vector3 direction = (GrapplePoint - _playerRigidbody.position).normalized;
+
+        Vector3 tangentialVelocity = Vector3.ProjectOnPlane(_playerRigidbody.linearVelocity, direction);
+        _playerRigidbody.linearVelocity = tangentialVelocity;
+
+        _isRopeInTension = true;
+
+        _playerRigidbody.position = GrapplePoint - direction * _ropeLength;
+    }
+
+    private void ResetGrapplingGun()
+    {
+        _launcherTransform.parent = transform;
+        _launcherTransform.localPosition = _launcherOffset;
+        _launcherTransform.localRotation = Quaternion.Euler(0, 0, 90f);
+        _reatactionTimer = 0;
+        CurrentGrapplePhase = GrapplePhase.Waiting;
+        GrapplePhaseChanged?.Invoke(GrapplePhase.Retracting);
+    }
+
+
 }
