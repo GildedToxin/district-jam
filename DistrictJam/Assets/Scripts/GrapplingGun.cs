@@ -38,6 +38,8 @@ public class GrapplingGun : MonoBehaviour
     private bool _holdingReelIn;
     public float minRopeLength = 10f;
 
+    private bool _holdingLetOut;
+
     public void LaunchFinished(bool isLaunchSuccessful, Vector3 grapplePoint)
     {
         if (CurrentGrapplePhase != GrapplePhase.Launching)
@@ -71,6 +73,7 @@ public class GrapplingGun : MonoBehaviour
 
     private void Update()
     {
+        _holdingLetOut = Input.GetKey(KeyCode.F);
         _holdingReelIn = Input.GetKey(KeyCode.R);
         if (Input.GetMouseButtonDown(0) && CurrentGrapplePhase == GrapplePhase.Waiting)
         {
@@ -129,6 +132,13 @@ public class GrapplingGun : MonoBehaviour
             {
                 _reelInSpeed += _reelInAcceleration * Time.fixedDeltaTime;
                 _ropeLength -= _reelInSpeed * Time.fixedDeltaTime;
+            }
+            else if (_holdingLetOut)
+            {
+                _reelInSpeed = 0f;
+
+                _ropeLength += _reelInAcceleration * Time.fixedDeltaTime;
+                _ropeLength = Mathf.Clamp(_ropeLength, minRopeLength, 50f);
             }
             else
             {
