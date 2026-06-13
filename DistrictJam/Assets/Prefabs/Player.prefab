@@ -200,7 +200,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 2
 --- !u!136 &484425229561570224
@@ -397,7 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 586d515319847c840ae9c86c61e83718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _launchSpeed: 40
+  _launchSpeed: 80
   _maxLaunchTime: 2
   _grapplingGun: {fileID: 3895826954529273606}
   _grappleLayerMask:
@@ -568,7 +568,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 73242e3d9f7fd3246b34e27a67e8699d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -769,9 +769,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91c6120b6c1d4264db81a105363135ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrapplingGun
-  _reelInAcceleration: 2
+  _reelInAcceleration: 10
   _retractionTime: 0.25
   _launcherTransform: {fileID: 6228603091833161886}
+  minRopeLength: 10
 --- !u!1001 &609393698085339136
 PrefabInstance:
   m_ObjectHideFlags: 0
