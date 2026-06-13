@@ -9,8 +9,10 @@ public class Movement : MonoBehaviour
     private float mouseX;
     private float mouseY;
     private float moveSpeed = 5f;
-    private float cameraSensitivity = 10f;
+    private float cameraSensitivity = 5f;
     private Vector3 moveDirection;
+    private bool isGrounded;
+    private float jumpForce = 300f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,12 +31,21 @@ public class Movement : MonoBehaviour
         // Mouse Input
         mouseX = Input.GetAxis("Mouse X");
         mouseY = Input.GetAxis("Mouse Y");
+        Rotate();
+
+        // Jump Input
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            Jump();
+        }
+
+        // Check if the player is grounded
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f);
     }
 
     void FixedUpdate()
     {
         Move();
-        Rotate();
     }
 
     private void Move()
@@ -52,5 +63,12 @@ public class Movement : MonoBehaviour
         // Camera Rotation logic
         this.transform.Rotate(Vector3.up, mouseX * cameraSensitivity);
         cam.transform.Rotate(Vector3.right, -mouseY * cameraSensitivity);
+        //cam.transform.localEulerAngles = new Vector3(Mathf.Clamp(cam.transform.localEulerAngles.x, -90f, 90f), cam.transform.localEulerAngles.y, cam.transform.localEulerAngles.z);
+    }
+
+    private void Jump()
+    {
+        // Jumping logic
+        rb.AddForce(Vector3.up * jumpForce);
     }
 }
