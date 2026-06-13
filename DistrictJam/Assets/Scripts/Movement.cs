@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
     private float rotX;
     private float rotY;
     private float moveSpeed = 5f;
-    private float cameraSensitivity = 5f;
+    private float cameraSensitivity = 2f;
     private Vector3 moveDirection;
     private bool isGrounded;
     private float jumpForce = 300f;
