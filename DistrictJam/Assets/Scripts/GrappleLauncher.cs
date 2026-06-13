@@ -71,6 +71,10 @@ public class GrappleLauncher : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(collision.gameObject.GetComponent<Movement>() != null || collision.gameObject.GetComponentInParent<Movement>())
+        {
+            return;
+        }
         if (_isLaunched)
         {
             transform.position = collision.GetContact(0).point;
