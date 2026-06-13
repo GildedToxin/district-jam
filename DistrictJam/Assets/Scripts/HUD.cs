@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class HUD : MonoBehaviour
 {
     public TextMeshProUGUI fireflyText;
+    public TextMeshProUGUI infoText;
     public Slider slider;
 
     private void Start()
@@ -21,5 +22,11 @@ public class HUD : MonoBehaviour
     public void TakeDamage(float health, float maxHealth = 100)
     {
         slider.value = health / maxHealth;
+    }
+
+    public void SetInfoText(string text)
+    {
+        infoText.gameObject.SetActive(true);
+        infoText.text = text;
     }
 }

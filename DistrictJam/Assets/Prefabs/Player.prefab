@@ -256,6 +256,8 @@ MonoBehaviour:
   health: 100
   safeFallVelocity: 6
   damageMultiplier: 1
+  onWeb: 0
+  currentWeb: {fileID: 0}
 --- !u!1 &3266354774426730425
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,9 +378,9 @@ Transform:
   m_GameObject: {fileID: 3495924389559475290}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -0.000000029802, y: -0.01, z: 0.01}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1152843626246596587}
   m_Father: {fileID: 7167112660538576344}
@@ -691,8 +693,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.414, y: -0.234, z: 0.6}
-  m_LocalScale: {x: 0.14263, y: 0.14263, z: 0.14263}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2884923540683762874}
   - {fileID: 6228603091833161886}
