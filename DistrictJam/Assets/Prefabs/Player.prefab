@@ -419,6 +419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   _launchSpeed: 80
   _maxLaunchTime: 2
+  _isLaunched: 0
   _grapplingGun: {fileID: 3895826954529273606}
   _grappleLayerMask:
     serializedVersion: 2
@@ -789,10 +790,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91c6120b6c1d4264db81a105363135ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrapplingGun
-  _reelInAcceleration: 10
+  CurrentGrapplePhase: 0
+  _reelInAcceleration: 30
   _retractionTime: 0.25
   _launcherTransform: {fileID: 6228603091833161886}
+  _ropeLength: 0
   minRopeLength: 10
+  maxRopeLength: 20
+  currentRopeLength: 0
 --- !u!1001 &609393698085339136
 PrefabInstance:
   m_ObjectHideFlags: 0
