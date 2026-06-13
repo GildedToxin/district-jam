@@ -96,10 +96,14 @@ public class Movement : MonoBehaviour
     private void Move()
     {
         // Movement logic
-        Vector3 targetVelocity = moveDirection * moveSpeed;
-        targetVelocity.y = rb.linearVelocity.y;
+        if (isGrounded)
+        {
+            Vector3 targetVelocity = moveDirection * moveSpeed;
+            targetVelocity.y = rb.linearVelocity.y;
 
-        rb.linearVelocity = targetVelocity;
+            rb.linearVelocity = targetVelocity;
+        }
+
     }
 
     private void Rotate()
