@@ -14,6 +14,7 @@ public class Movement : MonoBehaviour
     private bool isGrounded;
     private float jumpForce = 300f;
 
+    public bool canMove = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,7 +35,7 @@ public class Movement : MonoBehaviour
         Rotate();
 
         // Jump Input
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && canMove)
         {
             Jump();
         }
@@ -45,7 +46,8 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Move();
+        if(canMove)
+            Move();
     }
 
     private void Move()

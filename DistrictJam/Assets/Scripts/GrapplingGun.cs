@@ -32,7 +32,7 @@ public class GrapplingGun : MonoBehaviour
         else
         {
             IsGrappling = false;
-            _movement.enabled = true;
+            _movement.canMove = true;
             _isApplyingGrappleForce = false;
         }
         
@@ -63,7 +63,7 @@ public class GrapplingGun : MonoBehaviour
         {
             IsGrappling = true;
             grapplePoint = hit.point;
-            _movement.enabled = false;
+            _movement.canMove = false;
             
             rb.linearVelocity = Vector3.zero; // Reset velocity to prevent unwanted momentum when starting the grapple
 
