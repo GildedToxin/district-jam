@@ -72,8 +72,7 @@ public class AirBoost : MonoBehaviour
     {
         // get the percentage of the charge and lerp the trumpet's position and rotation
         float chargePercentage = airBoostCharge / 100f;
-        trumpet.transform.localPosition = Vector3.Lerp(trumpetRestingPosition, trumpetChargedPosition, chargePercentage);
-        trumpet.transform.localRotation = Quaternion.Euler(Vector3.Lerp(new Vector3(trumpetRestingRotationX, 0, 0), new Vector3(trumpetChargedRotationX, 0, 0), chargePercentage));
+        trumpet.transform.localRotation = Quaternion.Euler(Vector3.Lerp(new Vector3(trumpetRestingRotationX, 360, -90), new Vector3(trumpetChargedRotationX, 360, -90), chargePercentage));
     }
 
     private void Boost(float charge)
