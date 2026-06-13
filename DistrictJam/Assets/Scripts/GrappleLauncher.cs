@@ -121,28 +121,24 @@ public class GrappleLauncher : MonoBehaviour
         {
             Destroy(collision.gameObject);
             FindAnyObjectByType<PlayerController>().AddFirefly();
-             return;
-        }
-        if (!hitTop)
-        {
             return;
         }
-        if (collision.gameObject.layer != LayerMask.NameToLayer("Grapple"))
-        {
-            return;
-        }
-      
 
-        if (collision.gameObject.GetComponent<Movement>() != null || collision.gameObject.GetComponentInParent<Movement>())
+        if ((hitTop && collision.gameObject.layer == LayerMask.NameToLayer("Grapple")) || collision.gameObject.layer == LayerMask.NameToLayer("Swing"))
         {
-            return;
-        }
-        if (_isLaunched)
-        {
-            transform.position = collision.GetContact(0).point;
-            transform.right = -collision.GetContact(0).normal;
 
-            EndLaunch(true);
+            if (collision.gameObject.GetComponent<Movement>() != null || collision.gameObject.GetComponentInParent<Movement>())
+            {
+                return;
+            }
+            if (_isLaunched)
+            {
+                transform.position = collision.GetContact(0).point;
+                transform.right = -collision.GetContact(0).normal;
+
+                print("test");
+                EndLaunch(true);
+            }
         }
     }
 

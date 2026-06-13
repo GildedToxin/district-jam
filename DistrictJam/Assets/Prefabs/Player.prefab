@@ -795,7 +795,7 @@ MonoBehaviour:
   _retractionTime: 0.25
   _launcherTransform: {fileID: 6228603091833161886}
   _ropeLength: 0
-  minRopeLength: 10
+  minRopeLength: 4
   maxRopeLength: 20
   currentRopeLength: 0
 --- !u!1001 &609393698085339136
@@ -865,7 +865,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: c781f427787921146ba8b4de093a6119, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 73242e3d9f7fd3246b34e27a67e8699d, type: 2}
+      objectReference: {fileID: 2100000, guid: 65a5c3908e6d2b743a9fe32c109db100, type: 2}
     - target: {fileID: 919132149155446097, guid: c781f427787921146ba8b4de093a6119, type: 3}
       propertyPath: m_Name
       value: Lantern
