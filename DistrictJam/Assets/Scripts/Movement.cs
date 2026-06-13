@@ -67,7 +67,7 @@ public class Movement : MonoBehaviour
         isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f);
 
         // Air Boost Input
-        if (Input.GetMouseButton(1) && canMove && canBoost) // charging
+        if (Input.GetMouseButton(1) && canBoost) // charging
         {
         if (airBoostCharge < 100f)
             airBoostCharge += airBoostChargeRate * Time.deltaTime;
