@@ -14,6 +14,7 @@ public class GrappleLauncher : MonoBehaviour
     public GrapplingGun _grapplingGun;
 
     public LayerMask _grappleLayerMask;
+    [SerializeField] private float gravityScale = 3f;
     private void Start()
     {
         _sphereCollider = GetComponent<SphereCollider>();
@@ -52,6 +53,14 @@ public class GrappleLauncher : MonoBehaviour
         _grapplingGun.LaunchFinished(isLaunchSuccessful, transform.position);
     }
 
+    private void FixedUpdate()
+    {
+        if (_isLaunched)
+        {
+            Vector3 gravity = -9.81f * gravityScale * Vector3.up;
+            _rigidbody.AddForce(gravity, ForceMode.Acceleration);
+        }
+    }
     private void Update()
     {
         if (_isLaunched)
@@ -84,14 +93,22 @@ public class GrappleLauncher : MonoBehaviour
             }
         }
 
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Firefly"))
+        {
+            Destroy(collision.gameObject);
+            FindAnyObjectByType<PlayerController>().AddFirefly();
+             return;
+        }
         if (!hitTop)
         {
             return;
         }
-        if(collision.gameObject.layer != LayerMask.NameToLayer("Grapple"))
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Grapple"))
         {
             return;
         }
+      
 
         if (collision.gameObject.GetComponent<Movement>() != null || collision.gameObject.GetComponentInParent<Movement>())
         {

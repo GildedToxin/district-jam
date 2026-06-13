@@ -2,15 +2,33 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public int firefly = 0;
+    public float health = 100;
+    public float safeFallVelocity = 10f;
+    public float damageMultiplier = 1;
 
-    // Update is called once per frame
-    void Update()
+
+
+    public void AddFirefly()
     {
-        
+        firefly++;
+        FindAnyObjectByType<HUD>().AddFirefly(firefly);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        var hitTop = false;
+        foreach (ContactPoint contact in collision.contacts)
+        {
+            // Surface is facing upward
+            if (Vector3.Dot(contact.normal, Vector3.up) > 0.9f)
+            {
+                Debug.Log("Hit the top!");
+                hitTop = true;
+
+            }
+        }
+        float damage = Mathf.Max(0, (-GetComponent<Rigidbody>().linearVelocity.y - safeFallVelocity) * damageMultiplier);
+        health -= damage;
+        FindAnyObjectByType<HUD>().TakeDamage(health);
     }
 }
