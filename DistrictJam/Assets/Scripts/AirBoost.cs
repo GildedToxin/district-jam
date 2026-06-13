@@ -26,14 +26,16 @@ public class AirBoost : MonoBehaviour
         // Air Boost Input
         if (Input.GetMouseButton(1) && canBoost) // charging
         {
-        if (airBoostCharge < 100f)
-            airBoostCharge += airBoostChargeRate * Time.deltaTime;
+            if (airBoostCharge < 100f)
+                airBoostCharge += airBoostChargeRate * Time.deltaTime;
+            isCharging = true;
         }
-        if (Input.GetMouseButtonUp(1) && !movement.isGrounded && movement.canMove) // let go
+        if (Input.GetMouseButtonUp(1) && canBoost) // let go
         {
             Boost(airBoostCharge);
             airBoostCharge = 0f;
             canBoost = false;
+            isCharging = false;
         }
         // Reset the ability to boost after a delay
         if (!canBoost && !resetBoostScheduled)
@@ -41,11 +43,28 @@ public class AirBoost : MonoBehaviour
             resetBoostScheduled = true;
             Invoke("ResetBoost", 1.0f);
         }  
+
+        // Trigger trumpet visual
+        if (isCharging)
+        {
+            if (!trumpet.activeSelf)
+                trumpet.SetActive(true);
+            MoveTrumpet();
+        }
+        else
+            if (trumpet.activeSelf)
+                trumpet.SetActive(false);
+    }
+
+    private void MoveTrumpet()
+    {
+        
     }
 
     private void Boost(float charge)
     {
-        rb.AddForce(new Vector3(0, Mathf.Clamp(1f * airBoostForce * charge, airBoostMinForce, airBoostMaxForce), 0));
+        if (!movement.isGrounded && movement.canMove)
+            rb.AddForce(new Vector3(0, Mathf.Clamp(1f * airBoostForce * charge, airBoostMinForce, airBoostMaxForce), 0));
     }
 
     private void ResetBoost()
