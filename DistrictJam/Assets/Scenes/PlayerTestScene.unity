@@ -553,10 +553,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3895826954529273606, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
-      propertyPath: _reelInAcceleration
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 5533199198425443970, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
       propertyPath: pauseMenu
       value: 
