@@ -3,23 +3,35 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    #region References
     private Rigidbody rb;
     public Camera cam;
+    #endregion
 
+    #region Camera & Movement
     private float rotX;
     private float rotY;
     private float moveSpeed = 5f;
     private float cameraSensitivity = 2f;
     private Vector3 moveDirection;
-    private bool isGrounded;
-    private float jumpForce = 600f;
+    #endregion
+
+    #region Air Boost
     private float airBoostCharge = 0f;
     private float airBoostChargeRate = 7f;
     private float airBoostForce = 200f;
     private float airBoostMinForce = 300f;
     private float airBoostMaxForce = 1000f;
+    #endregion
+
+    #region Jump & Physics
+    private bool isGrounded;
+    private float jumpForce = 600f;
     private bool canBoost = true;
+    private bool resetBoostScheduled = false;
     private float gravityScale = 3f;
+    private float frictionAmount = 0.5f;
+    #endregion
 
     public bool canMove = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -64,8 +76,9 @@ public class Movement : MonoBehaviour
         }
 
         // Reset the ability to boost after a delay
-        if (!canBoost)
+        if (!canBoost && !resetBoostScheduled)
         {
+            resetBoostScheduled = true;
             Invoke("ResetBoost", 1.0f);
         }
     }
@@ -87,7 +100,6 @@ public class Movement : MonoBehaviour
         targetVelocity.y = rb.linearVelocity.y;
 
         rb.linearVelocity = targetVelocity;
-
     }
 
     private void Rotate()
@@ -113,5 +125,6 @@ public class Movement : MonoBehaviour
     private void ResetBoost()
     {
         canBoost = true;
+        resetBoostScheduled = false;
     }
 }
