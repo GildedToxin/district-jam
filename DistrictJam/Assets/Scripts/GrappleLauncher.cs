@@ -13,6 +13,7 @@ public class GrappleLauncher : MonoBehaviour
     private Rigidbody _rigidbody;
     public GrapplingGun _grapplingGun;
 
+    public LayerMask _grappleLayerMask;
     private void Start()
     {
         _sphereCollider = GetComponent<SphereCollider>();
@@ -71,7 +72,28 @@ public class GrappleLauncher : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.GetComponent<Movement>() != null || collision.gameObject.GetComponentInParent<Movement>())
+        var hitTop = false;
+        foreach (ContactPoint contact in collision.contacts)
+        {
+            // Surface is facing upward
+            if (Vector3.Dot(contact.normal, Vector3.up) > 0.9f)
+            {
+                Debug.Log("Hit the top!");
+                hitTop = true;
+
+            }
+        }
+
+        if (!hitTop)
+        {
+            return;
+        }
+        if(collision.gameObject.layer != LayerMask.NameToLayer("Grapple"))
+        {
+            return;
+        }
+
+        if (collision.gameObject.GetComponent<Movement>() != null || collision.gameObject.GetComponentInParent<Movement>())
         {
             return;
         }
