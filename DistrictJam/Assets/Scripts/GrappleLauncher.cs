@@ -55,10 +55,33 @@ public class GrappleLauncher : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_isLaunched)
+        if (!_isLaunched) return;
+
+        // --- 1. Apply gravity every frame ---
+        Vector3 gravity = Physics.gravity * gravityScale;
+        _rigidbody.AddForce(gravity, ForceMode.Acceleration);
+
+        // --- 2. Rope constraint ---
+        Vector3 anchorPoint = _grapplingGun.transform.position; // hook / fire point
+        Vector3 toObject = _rigidbody.position - anchorPoint;
+
+        float distance = toObject.magnitude;
+        float maxDistance = _grapplingGun.maxRopeLength;
+
+        if (distance > maxDistance)
         {
-            Vector3 gravity = -9.81f * gravityScale * Vector3.up;
-            _rigidbody.AddForce(gravity, ForceMode.Acceleration);
+            Vector3 dir = toObject / distance;
+
+            // Snap back onto rope boundary (hard constraint)
+            _rigidbody.position = anchorPoint + dir * maxDistance;
+
+            // Remove velocity pushing further outward
+            Vector3 vel = _rigidbody.linearVelocity;
+
+            // Remove radial component only (keeps swing tangential motion)
+            vel -= Vector3.Dot(vel, dir) * dir;
+
+            _rigidbody.linearVelocity = vel;
         }
     }
     private void Update()
@@ -67,10 +90,10 @@ public class GrappleLauncher : MonoBehaviour
         {
             _launchTimer -= Time.deltaTime;
 
-            if (_launchTimer < 0)
-            {
-                EndLaunch(false);
-            }
+            //if (_launchTimer < 0)
+            //{
+            //    EndLaunch(false);
+            //}
 
             if (Input.GetMouseButtonUp(0))
             {

@@ -26,7 +26,7 @@ public class GrapplingGun : MonoBehaviour
 
     private bool _isApplyingGrappleForces;
 
-    private float _ropeLength;
+    [SerializeField] private float _ropeLength;
     private bool _isRopeInTension;
 
     private float _reelInSpeed;
@@ -37,6 +37,8 @@ public class GrapplingGun : MonoBehaviour
 
     private bool _holdingReelIn;
     public float minRopeLength = 10f;
+    public float maxRopeLength = 80f;
+    public float currentRopeLength;
 
     private bool _holdingLetOut;
 
@@ -75,6 +77,7 @@ public class GrapplingGun : MonoBehaviour
     {
         _holdingLetOut = Input.GetKey(KeyCode.F);
         _holdingReelIn = Input.GetKey(KeyCode.R);
+        currentRopeLength = (_launcherTransform.position- _playerRigidbody.position).magnitude;
         if (Input.GetMouseButtonDown(0) && CurrentGrapplePhase == GrapplePhase.Waiting)
         {
             CurrentGrapplePhase = GrapplePhase.Launching;
@@ -138,7 +141,7 @@ public class GrapplingGun : MonoBehaviour
                 _reelInSpeed = 0f;
 
                 _ropeLength += _reelInAcceleration * Time.fixedDeltaTime;
-                _ropeLength = Mathf.Clamp(_ropeLength, minRopeLength, 50f);
+                _ropeLength = Mathf.Clamp(_ropeLength, minRopeLength, maxRopeLength);
             }
             else
             {
