@@ -35,6 +35,9 @@ public class GrapplingGun : MonoBehaviour
     private Vector3 _launcherOffset;
     private float _reatactionTimer;
 
+    private bool _holdingReelIn;
+    public float minRopeLength = 10f;
+
     public void LaunchFinished(bool isLaunchSuccessful, Vector3 grapplePoint)
     {
         if (CurrentGrapplePhase != GrapplePhase.Launching)
@@ -68,6 +71,7 @@ public class GrapplingGun : MonoBehaviour
 
     private void Update()
     {
+        _holdingReelIn = Input.GetKey(KeyCode.R);
         if (Input.GetMouseButtonDown(0) && CurrentGrapplePhase == GrapplePhase.Waiting)
         {
             CurrentGrapplePhase = GrapplePhase.Launching;
@@ -112,7 +116,7 @@ public class GrapplingGun : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_isApplyingGrappleForces)
+        if (_isApplyingGrappleForces )
         {
             ApplyGrappleForces();
 
@@ -121,15 +125,14 @@ public class GrapplingGun : MonoBehaviour
                 TugPlayer();
             }
 
-            if (_ropeLength > 1.5f && _isReelingIn)
+            if (_ropeLength > minRopeLength && _isReelingIn && _holdingReelIn)
             {
                 _reelInSpeed += _reelInAcceleration * Time.fixedDeltaTime;
                 _ropeLength -= _reelInSpeed * Time.fixedDeltaTime;
             }
             else
             {
-                _isReelingIn = false;
-                _ropeLength = 1.5f;
+                _reelInSpeed = 0f;
             }
         }
     }
@@ -150,10 +153,10 @@ public class GrapplingGun : MonoBehaviour
         Vector3 direction = (GrapplePoint - _playerRigidbody.position).normalized;
         float theta = Vector3.Angle(direction, Vector3.up) * Mathf.Deg2Rad;
 
-        float centripetalAcceleration = _playerRigidbody.linearVelocity.sqrMagnitude / _ropeLength;
+        float centripetalAcceleration = Mathf.Min(_playerRigidbody.linearVelocity.sqrMagnitude / Mathf.Max(_ropeLength, 0.1f), 50f);
         Vector3 tension = _playerRigidbody.mass * (centripetalAcceleration + Physics.gravity.magnitude * Mathf.Cos(theta)) * direction;
 
-        if (_isRopeInTension)
+        if (_isRopeInTension )
         {
             if (_isReelingIn)
             {
@@ -173,7 +176,15 @@ public class GrapplingGun : MonoBehaviour
 
         _isRopeInTension = true;
 
-        _playerRigidbody.position = GrapplePoint - direction * _ropeLength;
+        Vector3 toPlayer = _playerRigidbody.position - GrapplePoint;
+        Vector3 corrected = GrapplePoint + toPlayer.normalized * _ropeLength;
+
+        Vector3 correctionVelocity = (corrected - _playerRigidbody.position) / Time.fixedDeltaTime;
+
+        _playerRigidbody.linearVelocity = Vector3.ProjectOnPlane(
+            _playerRigidbody.linearVelocity + correctionVelocity,
+            direction
+        );
     }
 
     private void ResetGrapplingGun()
