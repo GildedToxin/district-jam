@@ -13,7 +13,7 @@ public class RopeRenderer : MonoBehaviour
 
     private void Update()
     {
-        if (_grapplingGun._isGrappling)
+        if (_grapplingGun.IsGrappling)
         {
             if (!_lineRenderer.enabled)
             {
@@ -21,7 +21,7 @@ public class RopeRenderer : MonoBehaviour
             }
 
             _lineRenderer.SetPosition(0, transform.position);
-            _lineRenderer.SetPosition(1, _grapplingGun._grapplePoint);
+            _lineRenderer.SetPosition(1, _grapplingGun.grapplePoint);
         }
         else
         {
