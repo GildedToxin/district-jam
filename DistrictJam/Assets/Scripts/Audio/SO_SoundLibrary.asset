@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e978659a6682c04b8015dd9e248d727, type: 3}
+  m_Name: SO_SoundLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::SoundLibrary
+  jarThrow: {fileID: 0}
+  jarLand: {fileID: 0}
+  jarGrapple: {fileID: 0}
+  buglerJump: {fileID: 0}
+  squirrelLand: {fileID: 0}
+  squirrelFootstep: {fileID: 0}
+  squirrelDeath: {fileID: 0}
+  fireflyCatch: {fileID: 0}
+  fireflyAmbient: {fileID: 0}
+  sapRise: {fileID: 0}
+  sapClose: {fileID: 0}
+  sapTouch: {fileID: 0}
+  cobwebIgnite: {fileID: 0}
+  cobwebBurn: {fileID: 0}
+  cobwebClear: {fileID: 0}
+  zoneEnter: {fileID: 0}
+  zoneClear: {fileID: 0}
+  musicExplore: {fileID: 0}
+  musicChase: {fileID: 0}
+  musicVictory: {fileID: 0}
