@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 1386175044388718285}
   - component: {fileID: 484425229561570224}
   - component: {fileID: 5533199198425443970}
+  - component: {fileID: 7773933456281889026}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -238,6 +239,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Movement
   cam: {fileID: 4657404798782935247}
   canMove: 1
+--- !u!114 &7773933456281889026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2768572354962639474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e235d643ece5f740b567bb396e655ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  firefly: 0
 --- !u!1 &3266354774426730425
 GameObject:
   m_ObjectHideFlags: 0
