@@ -22,12 +22,15 @@ public class Movement : MonoBehaviour
         moveX = Input.GetAxis("Horizontal");
         moveZ = Input.GetAxis("Vertical");
 
-        
+        // Mouse Input
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
     }
 
     void FixedUpdate()
     {
         Move();
+        Rotate();
     }
 
     private void Move()
@@ -47,5 +50,16 @@ public class Movement : MonoBehaviour
         else velocity.z = 0f;
 
         rb.Move(this.transform.position + velocity, Quaternion.identity );
+    }
+
+    private void Rotate()
+    {
+        // Camera Rotation logic
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
+
+        // Apply rotation to the camera
+        this.transform.Rotate(Vector3.up, mouseX * 5f);
+        this.transform.Rotate(Vector3.right, -mouseY * 5f);
     }
 }
