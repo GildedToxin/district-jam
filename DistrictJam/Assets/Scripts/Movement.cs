@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
     #region References
     private Rigidbody rb;
     public Camera cam;
+    public PauseMenuManager pauseMenu;
     #endregion
 
     #region Camera & Movement
@@ -46,6 +47,8 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (pauseMenu.isPaused == true)
+            return;
         // Movement Input
         moveDirection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
 
@@ -66,8 +69,8 @@ public class Movement : MonoBehaviour
         // Air Boost Input
         if (Input.GetMouseButton(1) && canMove && canBoost) // charging
         {
-            if (airBoostCharge < 100f)
-                airBoostCharge += airBoostChargeRate * Time.deltaTime;
+        if (airBoostCharge < 100f)
+            airBoostCharge += airBoostChargeRate * Time.deltaTime;
         }
         if (Input.GetMouseButtonUp(1) && !isGrounded && canMove) // let go
         {
@@ -75,13 +78,12 @@ public class Movement : MonoBehaviour
             airBoostCharge = 0f;
             canBoost = false;
         }
-
         // Reset the ability to boost after a delay
         if (!canBoost && !resetBoostScheduled)
         {
             resetBoostScheduled = true;
             Invoke("ResetBoost", 1.0f);
-        }
+        }   
     }
 
     void FixedUpdate()
