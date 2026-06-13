@@ -31,6 +31,7 @@ public class Movement : MonoBehaviour
     private bool resetBoostScheduled = false;
     private float gravityScale = 3f;
     private float frictionAmount = 0.5f;
+    private float airDrag = 0.01f;
     #endregion
 
     public bool canMove = true;
@@ -102,6 +103,14 @@ public class Movement : MonoBehaviour
             targetVelocity.y = rb.linearVelocity.y;
 
             rb.linearVelocity = targetVelocity;
+        }
+        else if (!isGrounded)
+        {
+            // Air movement
+            rb.AddForce(moveDirection * moveSpeed/15f, ForceMode.VelocityChange);
+
+            // Air drag only in x and z
+            rb.AddForce(new Vector3(-rb.linearVelocity.x * airDrag, 0f, -rb.linearVelocity.z * airDrag), ForceMode.VelocityChange);
         }
 
     }
