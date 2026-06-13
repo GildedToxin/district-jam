@@ -4,6 +4,7 @@ public class AirBoost : MonoBehaviour
 {
     private Rigidbody rb;
     private Movement movement;
+    [SerializeField] private GameObject trumpet;
 
     private float airBoostCharge = 0f;
     private float airBoostChargeRate = 7f;
