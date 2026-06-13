@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bridge
+  m_Name: M_bridge_forward
   m_Shader: {fileID: -6465566751694194690, guid: d2f91465ec99a41cca1de94d4dce60e0, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -29,7 +29,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BC_rgb_smoothness_a:
-        m_Texture: {fileID: 2800000, guid: f97c8622bc1d2884cbb5f52a4a4e1d5e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8b120d79438aeff49a652dc9a1f7c0f8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PainterlyMask_nrm_r_colVar_g:
@@ -55,14 +55,14 @@ Material:
     - _QueueOffset: 0
     - _Smoothness: 0
     - _StrokeBlendingNoiseScale: 480.7
-    - _StrokeBlendingNoiseStrength: 0.16
-    - _StrokeRandomness: 1
-    - _StrokeScale: 5.73
+    - _StrokeBlendingNoiseStrength: 0.29
+    - _StrokeRandomness: 0.07
+    - _StrokeScale: 4.3
     - _UseBlendingNoise: 1
     - _Variation: 0
     m_Colors:
-    - _BaseColor: {r: 1, g: 0.8871067, b: 0.7122642, a: 0}
-    - _VariationColorA: {r: 1, g: 0.9454545, b: 0, a: 0}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
+    - _VariationColorA: {r: 1, g: 0.00000019073488, b: 0, a: 0}
     - _VariationColorB: {r: 0.04431629, g: 0, b: 1, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
