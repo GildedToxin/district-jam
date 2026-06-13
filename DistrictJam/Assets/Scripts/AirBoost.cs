@@ -6,6 +6,12 @@ public class AirBoost : MonoBehaviour
     private Movement movement;
     [SerializeField] private GameObject trumpet;
 
+    [SerializeField] private Vector3 trumpetRestingPosition; // No charge position
+    [SerializeField] private float trumpetRestingRotationX; // No charge rotation
+
+    [SerializeField] private Vector3 trumpetChargedPosition; // Max charge position
+    [SerializeField] private float trumpetChargedRotationX; // Max charge rotation
+
     private float airBoostCharge = 0f;
     private float airBoostChargeRate = 7f;
     private float airBoostForce = 200f;
@@ -52,13 +58,22 @@ public class AirBoost : MonoBehaviour
             MoveTrumpet();
         }
         else
+        {
             if (trumpet.activeSelf)
                 trumpet.SetActive(false);
+
+            // reset the trumpet's local position and rotation
+            trumpet.transform.localPosition = trumpetRestingPosition;
+            trumpet.transform.localRotation = Quaternion.Euler(new Vector3(trumpetRestingRotationX, 0, 0));
+        }
     }
 
     private void MoveTrumpet()
     {
-        
+        // get the percentage of the charge and lerp the trumpet's position and rotation
+        float chargePercentage = airBoostCharge / 100f;
+        trumpet.transform.localPosition = Vector3.Lerp(trumpetRestingPosition, trumpetChargedPosition, chargePercentage);
+        trumpet.transform.localRotation = Quaternion.Euler(Vector3.Lerp(new Vector3(trumpetRestingRotationX, 0, 0), new Vector3(trumpetChargedRotationX, 0, 0), chargePercentage));
     }
 
     private void Boost(float charge)
