@@ -235,6 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf7a9e879ad6ff4db07281fb63808ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Movement
+  cam: {fileID: 4657404798782935247}
 --- !u!114 &1056722532716749891
 MonoBehaviour:
   m_ObjectHideFlags: 0

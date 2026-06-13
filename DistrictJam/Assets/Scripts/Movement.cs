@@ -4,27 +4,31 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     private Rigidbody rb;
-    private Vector3 velocity;
-    private float moveX;
-    private float moveZ;
+    public Camera cam;
+
+    private float mouseX;
+    private float mouseY;
     private float moveSpeed = 5f;
+    private float cameraSensitivity = 10f;
+    private Vector3 moveDirection;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         // Movement Input
-        moveX = Input.GetAxis("Horizontal");
-        moveZ = Input.GetAxis("Vertical");
+        moveDirection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
 
         // Mouse Input
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
+        mouseX = Input.GetAxis("Mouse X");
+        mouseY = Input.GetAxis("Mouse Y");
     }
 
     void FixedUpdate()
@@ -36,30 +40,17 @@ public class Movement : MonoBehaviour
     private void Move()
     {
         // Movement logic
+        Vector3 targetVelocity = moveDirection * moveSpeed;
+        targetVelocity.y = rb.linearVelocity.y;
 
-        if (moveX > 0.1f || moveX < -0.1f)
-        {
-            velocity.x = moveX * moveSpeed * Time.fixedDeltaTime;
-        }
-        else velocity.x = 0f;
+        rb.linearVelocity = targetVelocity;
 
-        if (moveZ > 0.1f || moveZ < -0.1f)
-        {
-            velocity.z = moveZ * moveSpeed * Time.fixedDeltaTime;
-        }
-        else velocity.z = 0f;
-
-        rb.Move(this.transform.position + velocity, Quaternion.identity );
     }
 
     private void Rotate()
     {
         // Camera Rotation logic
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
-
-        // Apply rotation to the camera
-        this.transform.Rotate(Vector3.up, mouseX * 5f);
-        this.transform.Rotate(Vector3.right, -mouseY * 5f);
+        this.transform.Rotate(Vector3.up, mouseX * cameraSensitivity);
+        cam.transform.Rotate(Vector3.right, -mouseY * cameraSensitivity);
     }
 }
