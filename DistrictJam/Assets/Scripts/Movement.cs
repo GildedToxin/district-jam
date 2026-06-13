@@ -17,25 +17,15 @@ public class Movement : MonoBehaviour
     private Vector3 moveDirection;
     #endregion
 
-    #region Air Boost
-    private float airBoostCharge = 0f;
-    private float airBoostChargeRate = 7f;
-    private float airBoostForce = 200f;
-    private float airBoostMinForce = 300f;
-    private float airBoostMaxForce = 1000f;
-    #endregion
-
     #region Jump & Physics
-    private bool isGrounded;
+    [HideInInspector] public bool isGrounded;
     private float jumpForce = 600f;
-    private bool canBoost = true;
-    private bool resetBoostScheduled = false;
     private float gravityScale = 3f;
     private float frictionAmount = 0.5f;
     private float airDrag = 0.01f;
     #endregion
 
-    public bool canMove = true;
+    [HideInInspector] public bool canMove = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -64,26 +54,7 @@ public class Movement : MonoBehaviour
         }
 
         // Check if the player is grounded
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f);
-
-        // Air Boost Input
-        if (Input.GetMouseButton(1) && canBoost) // charging
-        {
-        if (airBoostCharge < 100f)
-            airBoostCharge += airBoostChargeRate * Time.deltaTime;
-        }
-        if (Input.GetMouseButtonUp(1) && !isGrounded && canMove) // let go
-        {
-            AirBoost(airBoostCharge);
-            airBoostCharge = 0f;
-            canBoost = false;
-        }
-        // Reset the ability to boost after a delay
-        if (!canBoost && !resetBoostScheduled)
-        {
-            resetBoostScheduled = true;
-            Invoke("ResetBoost", 1.0f);
-        }   
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f); 
     }
 
     void FixedUpdate()
@@ -130,16 +101,5 @@ public class Movement : MonoBehaviour
     {
         // Jumping logic
         rb.AddForce(Vector3.up * jumpForce);
-    }
-
-    private void AirBoost(float charge)
-    {
-        rb.AddForce(new Vector3(0, Mathf.Clamp(1f * airBoostForce * charge, airBoostMinForce, airBoostMaxForce), 0));
-    }
-
-    private void ResetBoost()
-    {
-        canBoost = true;
-        resetBoostScheduled = false;
     }
 }
