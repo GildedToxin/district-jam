@@ -6,8 +6,8 @@ public class Movement : MonoBehaviour
     private Rigidbody rb;
     public Camera cam;
 
-    private float mouseX;
-    private float mouseY;
+    private float rotX;
+    private float rotY;
     private float moveSpeed = 5f;
     private float cameraSensitivity = 5f;
     private Vector3 moveDirection;
@@ -30,8 +30,8 @@ public class Movement : MonoBehaviour
         moveDirection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
 
         // Mouse Input
-        mouseX = Input.GetAxis("Mouse X");
-        mouseY = Input.GetAxis("Mouse Y");
+        rotX += Input.GetAxis("Mouse X") * cameraSensitivity;
+        rotY += Input.GetAxis("Mouse Y") * cameraSensitivity;
         Rotate();
 
         // Jump Input
@@ -63,9 +63,10 @@ public class Movement : MonoBehaviour
     private void Rotate()
     {
         // Camera Rotation logic
-        this.transform.Rotate(Vector3.up, mouseX * cameraSensitivity);
-        cam.transform.Rotate(Vector3.right, -mouseY * cameraSensitivity);
-        //cam.transform.localEulerAngles = new Vector3(Mathf.Clamp(cam.transform.localEulerAngles.x, -90f, 90f), cam.transform.localEulerAngles.y, cam.transform.localEulerAngles.z);
+        rotY = Mathf.Clamp(rotY, -90f, 90f);
+
+        transform.rotation = Quaternion.Euler(0f, rotX, 0f);
+        cam.transform.localRotation = Quaternion.Euler(-rotY, 0f, 0f);
     }
 
     private void Jump()
