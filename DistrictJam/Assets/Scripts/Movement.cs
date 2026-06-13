@@ -12,13 +12,14 @@ public class Movement : MonoBehaviour
     private float cameraSensitivity = 2f;
     private Vector3 moveDirection;
     private bool isGrounded;
-    private float jumpForce = 300f;
+    private float jumpForce = 600f;
     private float airBoostCharge = 0f;
     private float airBoostChargeRate = 7f;
-    private float airBoostForce = 100f;
-    private float airBoostMinForce = 100f;
-    private float airBoostMaxForce = 500f;
+    private float airBoostForce = 200f;
+    private float airBoostMinForce = 300f;
+    private float airBoostMaxForce = 1000f;
     private bool canBoost = true;
+    private float gravityScale = 3f;
 
     public bool canMove = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -73,6 +74,10 @@ public class Movement : MonoBehaviour
     {
         if(canMove)
             Move();
+
+        // Gravity
+        Vector3 gravity = -9.81f * gravityScale * Vector3.up;
+        rb.AddForce(gravity, ForceMode.Acceleration);
     }
 
     private void Move()
