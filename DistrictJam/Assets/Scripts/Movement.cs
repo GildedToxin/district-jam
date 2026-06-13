@@ -14,8 +14,10 @@ public class Movement : MonoBehaviour
     private bool isGrounded;
     private float jumpForce = 300f;
     private float airBoostCharge = 0f;
-    private float airBoostChargeRate = 10f;
+    private float airBoostChargeRate = 7f;
     private float airBoostForce = 100f;
+    private float airBoostMinForce = 100f;
+    private float airBoostMaxForce = 500f;
     private bool canBoost = true;
 
     public bool canMove = true;
@@ -51,7 +53,7 @@ public class Movement : MonoBehaviour
         if (Input.GetMouseButton(1) && canMove && canBoost) // charging
         {
             if (airBoostCharge < 100f)
-            airBoostCharge += airBoostChargeRate * Time.deltaTime;
+                airBoostCharge += airBoostChargeRate * Time.deltaTime;
         }
         if (Input.GetMouseButtonUp(1) && !isGrounded && canMove) // let go
         {
@@ -100,7 +102,7 @@ public class Movement : MonoBehaviour
 
     private void AirBoost(float charge)
     {
-        rb.AddForce(Vector3.up * airBoostForce * charge);
+        rb.AddForce(new Vector3(0, Mathf.Clamp(1f * airBoostForce * charge, airBoostMinForce, airBoostMaxForce), 0));
     }
 
     private void ResetBoost()
