@@ -6,7 +6,7 @@ public class GrappleLauncher : MonoBehaviour
     [SerializeField] private float _launchSpeed;
     [SerializeField] private float _maxLaunchTime;
 
-    private bool _isLaunched;
+    public bool _isLaunched;
     private float _launchTimer;
 
     private SphereCollider _sphereCollider;

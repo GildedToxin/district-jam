@@ -7,7 +7,7 @@ public class GrapplingGun : MonoBehaviour
     public event Action<GrapplePhase> GrapplePhaseChanged;
 
     public Vector3 GrapplePoint { get; private set; }
-    public GrapplePhase CurrentGrapplePhase { get; private set; }
+    public GrapplePhase CurrentGrapplePhase;
 
     public enum GrapplePhase
     {
@@ -19,14 +19,14 @@ public class GrapplingGun : MonoBehaviour
 
     [SerializeField] private float _reelInAcceleration;
     [SerializeField] private float _retractionTime;
-    [SerializeField] private Transform _launcherTransform;
+    [SerializeField] public Transform _launcherTransform;
 
     private Movement _playerMovement;
     private Rigidbody _playerRigidbody;
 
     private bool _isApplyingGrappleForces;
 
-    [SerializeField] private float _ropeLength;
+    public float _ropeLength;
     private bool _isRopeInTension;
 
     private float _reelInSpeed;
@@ -152,7 +152,7 @@ public class GrapplingGun : MonoBehaviour
 
     private void StartGrapple()
     {
-        _playerMovement.canMove = false;
+        //_playerMovement.canMove = false;
         _ropeLength = (GrapplePoint - _playerRigidbody.position).magnitude;
         _isReelingIn = true;
         _reelInSpeed = 0;

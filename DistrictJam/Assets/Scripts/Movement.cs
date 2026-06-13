@@ -69,13 +69,36 @@ public class Movement : MonoBehaviour
 
     private void Move()
     {
+       
+
+
         // Movement logic
         if (isGrounded)
         {
-            Vector3 targetVelocity = moveDirection * moveSpeed;
-            targetVelocity.y = rb.linearVelocity.y;
+            var grap = FindAnyObjectByType<GrapplingGun>();
+            Vector3 toPlayer = rb.position - grap.GrapplePoint;
+            float distance = toPlayer.magnitude;
 
-            rb.linearVelocity = targetVelocity;
+            if (distance >= grap._ropeLength && grap.CurrentGrapplePhase == GrapplingGun.GrapplePhase.Grappling)
+            {
+                Vector3 dir = toPlayer.normalized;
+
+                float moveAway =
+                    Vector3.Dot(rb.linearVelocity, dir);
+
+                if (moveAway > 0f)
+                {
+                    rb.linearVelocity -= dir * moveAway;
+                }
+            }
+
+            else
+            {
+                Vector3 targetVelocity = moveDirection * moveSpeed;
+                targetVelocity.y = rb.linearVelocity.y;
+
+                rb.linearVelocity = targetVelocity;
+            }
         }
         else if (!isGrounded)
         {
