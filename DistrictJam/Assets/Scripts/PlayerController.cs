@@ -42,6 +42,9 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.GetComponentInParent<PlayerController>()){
+            return;
+        }
         var hitTop = false;
         foreach (ContactPoint contact in collision.contacts)
         {
