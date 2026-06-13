@@ -6,7 +6,7 @@ public class killbox : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Destroy(other);
+            Destroy(other.gameObject);
             //other.GetComponent<Movement>().Die();
         }
     }

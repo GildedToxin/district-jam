@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
             // Surface is facing upward
             if (Vector3.Dot(contact.normal, Vector3.up) > 0.9f)
             {
-                Debug.Log("Hit the top!");
+
                 hitTop = true;
 
             }
