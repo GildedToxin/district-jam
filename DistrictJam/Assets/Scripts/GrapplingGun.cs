@@ -42,6 +42,7 @@ public class GrapplingGun : MonoBehaviour
 
     private bool _holdingLetOut;
 
+    public MeshRenderer lanternMesh;
     public void LaunchFinished(bool isLaunchSuccessful, Vector3 grapplePoint)
     {
         if (CurrentGrapplePhase != GrapplePhase.Launching)
@@ -65,6 +66,7 @@ public class GrapplingGun : MonoBehaviour
 
     private void Start()
     {
+        lanternMesh.enabled = false;
         _playerMovement = transform.parent.GetComponentInParent<Movement>();
         _playerRigidbody = transform.parent.GetComponentInParent<Rigidbody>();
 
@@ -75,11 +77,14 @@ public class GrapplingGun : MonoBehaviour
 
     private void Update()
     {
+        if(FindAnyObjectByType<PlayerController>().hasLantern == false)
+            return;
         _holdingLetOut = Input.GetKey(KeyCode.F);
         _holdingReelIn = Input.GetKey(KeyCode.R);
         currentRopeLength = (_launcherTransform.position- _playerRigidbody.position).magnitude;
         if (Input.GetMouseButtonDown(0) && CurrentGrapplePhase == GrapplePhase.Waiting)
         {
+            lanternMesh.enabled = true;
             CurrentGrapplePhase = GrapplePhase.Launching;
             GrapplePhaseChanged?.Invoke(GrapplePhase.Waiting);
         }
@@ -208,6 +213,7 @@ public class GrapplingGun : MonoBehaviour
         _reatactionTimer = 0;
         CurrentGrapplePhase = GrapplePhase.Waiting;
         GrapplePhaseChanged?.Invoke(GrapplePhase.Retracting);
+        lanternMesh.enabled = false;
     }
 
 

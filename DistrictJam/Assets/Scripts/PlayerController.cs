@@ -9,6 +9,16 @@ public class PlayerController : MonoBehaviour
     public bool onWeb = false;
     public WebBox currentWeb = null;
 
+    public bool hasLantern = false;
+    public bool hasAcorn = false;
+    public bool hasTrumpet = false;
+    
+    public void PickUpItem(bool lantern, bool acorn, bool trumpet)
+    {
+        if (lantern) hasLantern = true;
+        if (acorn) hasAcorn = true;
+        if (trumpet) hasTrumpet = true;
+    }
 
     public void SetWeb(WebBox web)
     {

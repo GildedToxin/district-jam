@@ -29,6 +29,9 @@ public class AirBoost : MonoBehaviour
 
     void Update()
     {
+        if (FindAnyObjectByType<PlayerController>().hasTrumpet == false)
+            return;
+
         // Air Boost Input
         if (Input.GetMouseButton(1) && canBoost) // charging
         {

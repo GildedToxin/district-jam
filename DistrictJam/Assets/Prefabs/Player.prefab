@@ -798,6 +798,7 @@ MonoBehaviour:
   minRopeLength: 4
   maxRopeLength: 20
   currentRopeLength: 0
+  lanternMesh: {fileID: 2284615799679196292}
 --- !u!1001 &609393698085339136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -878,6 +879,11 @@ PrefabInstance:
 --- !u!4 &1152843626246596587 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c781f427787921146ba8b4de093a6119, type: 3}
+  m_PrefabInstance: {fileID: 609393698085339136}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2284615799679196292 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: c781f427787921146ba8b4de093a6119, type: 3}
   m_PrefabInstance: {fileID: 609393698085339136}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8089612197662006234
