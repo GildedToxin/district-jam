@@ -31,6 +31,8 @@ public class GameOverCanvas : MonoBehaviour
        currentTimer += Time.deltaTime;
        if(currentTimer > maxTimer)
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
             if (win)
             {
                 text.gameObject.SetActive(true);

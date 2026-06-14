@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float deathFinalRotation;
     private Vector3 velocity;
 
+
+    public float maxDeathTimer = 1f;
+    public float currentDeathTimer = 0f;
     void FixedUpdate()
     {
         if (isDead)
@@ -69,6 +73,7 @@ public class PlayerController : MonoBehaviour
         if (health <= 0)
         {
             isDead = true;
+
         }
 
         velocity = Vector3.zero;
@@ -104,6 +109,16 @@ public class PlayerController : MonoBehaviour
             float vel = 2f;
             camera.transform.localRotation = Quaternion.Euler(new Vector3(camera.transform.localRotation.eulerAngles.x, camera.transform.localRotation.eulerAngles.y, 
             Mathf.SmoothDamp(camera.transform.localRotation.eulerAngles.z, deathFinalRotation, ref vel, .5f)));
+        }
+        else
+        {
+            if (currentDeathTimer == 0)
+                FindAnyObjectByType<HUD>().FadeBlack();
+            currentDeathTimer += Time.deltaTime;
+            if (currentDeathTimer > maxDeathTimer)
+            {
+               SceneManager.LoadScene("Game Over");
+            }
         }
     }
 }
