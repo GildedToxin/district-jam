@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7327192797762024480
+--- !u!114 &-1733197625955642057
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LanternMaterialPainterly
-  m_Shader: {fileID: -6465566751694194690, guid: 573ae24b8a0094c2ab0bdb0716073d35, type: 3}
+  m_Name: LanternOfficialMaterial
+  m_Shader: {fileID: -6465566751694194690, guid: d2f91465ec99a41cca1de94d4dce60e0, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -37,12 +37,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _AO_r_metalic_g_smoothness_a:
+    - _AO_r_metalic_g:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _BC_rgb_transparency_a:
-        m_Texture: {fileID: 2800000, guid: 9b96f6b26616f374a9bf3b3e0bc506a2, type: 3}
+    - _BC_rgb_smoothness_a:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PainterlyMask_nrm_r_colVar_g:
@@ -69,13 +69,12 @@ Material:
     - _Smoothness: 0
     - _StrokeBlendingNoiseScale: 500
     - _StrokeBlendingNoiseStrength: 0.15
-    - _StrokeRandomness: 0.52
+    - _StrokeRandomness: 1
     - _StrokeScale: 5
-    - _Transparency: 1
     - _UseBlendingNoise: 1
     - _Variation: 0.1
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
+    - _BaseColor: {r: 0, g: 0, b: 0, a: 0}
     - _VariationColorA: {r: 0, g: 0, b: 0, a: 0}
     - _VariationColorB: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
