@@ -12,6 +12,22 @@ public class PlayerController : MonoBehaviour
     public bool hasLantern = false;
     public bool hasAcorn = false;
     public bool hasTrumpet = false;
+    public bool isDead = false;
+
+    [SerializeField] private GameObject camera;
+    [SerializeField] private Vector3 deathInitialPosition;
+    [SerializeField] private float deathInitialRotation;
+    [SerializeField] private Vector3 deathFinalPosition;
+    [SerializeField] private float deathFinalRotation;
+    private Vector3 velocity;
+
+    void FixedUpdate()
+    {
+        if (isDead)
+        {
+            DieRagdoll();
+        }
+    }
     
     public void PickUpItem(bool lantern, bool acorn, bool trumpet)
     {
@@ -49,6 +65,13 @@ public class PlayerController : MonoBehaviour
             SetFirefly(firefly - currentWeb.fireflyCost);
             currentWeb.BreakWeb();
         }
+
+        if (health <= 0)
+        {
+            isDead = true;
+        }
+
+        velocity = Vector3.zero;
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -69,5 +92,18 @@ public class PlayerController : MonoBehaviour
         float damage = Mathf.Max(0, (-GetComponent<Rigidbody>().linearVelocity.y - safeFallVelocity) * damageMultiplier);
         health -= damage;
         FindAnyObjectByType<HUD>().TakeDamage(health);
+    }
+
+    private void DieRagdoll() // ragdoll but not really
+    {
+        float angle = camera.transform.localRotation.eulerAngles.z;
+        if (Vector3.Distance(camera.transform.localPosition, deathFinalPosition) > 0.1f)
+        {
+            camera.transform.localPosition = Vector3.SmoothDamp(camera.transform.localPosition, deathFinalPosition,ref velocity, .5f);
+            
+            float vel = 2f;
+            camera.transform.localRotation = Quaternion.Euler(new Vector3(camera.transform.localRotation.eulerAngles.x, camera.transform.localRotation.eulerAngles.y, 
+            Mathf.SmoothDamp(camera.transform.localRotation.eulerAngles.z, deathFinalRotation, ref vel, .5f)));
+        }
     }
 }

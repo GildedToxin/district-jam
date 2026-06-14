@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
     private Rigidbody rb;
     public Camera cam;
     public PauseMenuManager pauseMenu;
+    private PlayerController playerController;
     #endregion
 
     #region Camera & Movement
@@ -32,6 +33,7 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        playerController = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -43,9 +45,12 @@ public class Movement : MonoBehaviour
         moveDirection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
 
         // Mouse Input
-        rotX += Input.GetAxis("Mouse X") * cameraSensitivity;
-        rotY += Input.GetAxis("Mouse Y") * cameraSensitivity;
-        Rotate();
+        if (!playerController.isDead)
+        {
+            rotX += Input.GetAxis("Mouse X") * cameraSensitivity;
+            rotY += Input.GetAxis("Mouse Y") * cameraSensitivity;
+            Rotate();
+        }
 
         // Jump Input
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded && canMove)
