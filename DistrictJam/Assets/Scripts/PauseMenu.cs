@@ -49,5 +49,8 @@ public class PauseMenuManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene("Tree");
+        Time.timeScale = 1f; // Resume the game
+            pauseMenuUI.SetActive(false); // Hide the pause menu UI
+            isPaused = false;
     }
 }
