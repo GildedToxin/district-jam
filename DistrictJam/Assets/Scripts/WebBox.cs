@@ -3,6 +3,7 @@ using UnityEngine;
 public class WebBox : MonoBehaviour
 {
     public int fireflyCost = 3;
+    public GameObject fire;
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
@@ -37,6 +38,13 @@ public class WebBox : MonoBehaviour
     public void BreakWeb()
     {
         FindAnyObjectByType<HUD>().infoText.gameObject.SetActive(false);
+        fire.SetActive(true);
+
+        Invoke(nameof(DestoryWeb), 3f);
+    }
+
+    public void DestoryWeb()
+    {
         Destroy(transform.root.gameObject);
     }
 }
