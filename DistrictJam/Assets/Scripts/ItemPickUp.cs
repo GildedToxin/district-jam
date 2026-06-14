@@ -23,6 +23,7 @@ public class ItemPickUp : MonoBehaviour
 
     public bool isGold;
     public bool isSilver;
+    public bool isfire;
 
 
     void Start() { 
@@ -32,6 +33,7 @@ public class ItemPickUp : MonoBehaviour
 
     void Update()
     {
+        if (isfire) return;
         transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime, Space.World);
 
         float newY =
@@ -46,7 +48,7 @@ public class ItemPickUp : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
 
-            collision.GetComponent<PlayerController>().PickUpItem(isLantern, isAcorn, isTrumpet, isSilver, isGold);
+            collision.GetComponent<PlayerController>().PickUpItem(isLantern, isAcorn, isTrumpet, isSilver, isGold, isfire);
             Destroy(gameObject);
         }
     }

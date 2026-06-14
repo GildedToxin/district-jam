@@ -38,8 +38,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void PickUpItem(bool lantern, bool acorn, bool trumpet, bool silver, bool gold)
+    public void PickUpItem(bool lantern, bool acorn, bool trumpet, bool silver, bool gold, bool fire)
     {
+        if (fire) AddFirefly();
         if (lantern) hasLantern = true;
         if (acorn) Heal();
         if (silver) SceneManager.LoadScene("MainMenu");
