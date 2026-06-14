@@ -42,7 +42,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BC_rgb_smoothness_a:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 9b96f6b26616f374a9bf3b3e0bc506a2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PainterlyMask_nrm_r_colVar_g:
@@ -74,8 +74,8 @@ Material:
     - _UseBlendingNoise: 1
     - _Variation: 0.1
     m_Colors:
-    - _BaseColor: {r: 0, g: 0, b: 0, a: 0}
-    - _VariationColorA: {r: 0, g: 0, b: 0, a: 0}
-    - _VariationColorB: {r: 1, g: 1, b: 1, a: 0}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
+    - _VariationColorA: {r: 1, g: 0.042452812, b: 0.042452812, a: 0}
+    - _VariationColorB: {r: 0.15619439, g: 0.37386456, b: 0.735849, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

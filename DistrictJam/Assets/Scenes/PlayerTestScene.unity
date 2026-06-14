@@ -553,6 +553,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lantern
       objectReference: {fileID: 0}
+    - target: {fileID: 2284615799679196292, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c691f4eb2ed40324192c16ef175599b1, type: 2}
     - target: {fileID: 2768572354962639474, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2946,7 +2950,7 @@ PrefabInstance:
     - target: {fileID: 990722343592286444, guid: 2e2147621fc2fd94f8f78b1710064074, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 50fd49727cfdd114dafacb0334fdb99f, type: 2}
+      objectReference: {fileID: 2100000, guid: c691f4eb2ed40324192c16ef175599b1, type: 2}
     - target: {fileID: 2770218426158038789, guid: 2e2147621fc2fd94f8f78b1710064074, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.67

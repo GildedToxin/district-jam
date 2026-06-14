@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 5991770158476295620}
   m_Layer: 7
   m_Name: Lantern
-  m_TagString: Untagged
+  m_TagString: Lantern
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -923,9 +923,13 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: c781f427787921146ba8b4de093a6119, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 65a5c3908e6d2b743a9fe32c109db100, type: 2}
+      objectReference: {fileID: 2100000, guid: c691f4eb2ed40324192c16ef175599b1, type: 2}
     - target: {fileID: 919132149155446097, guid: c781f427787921146ba8b4de093a6119, type: 3}
       propertyPath: m_Name
+      value: Lantern
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c781f427787921146ba8b4de093a6119, type: 3}
+      propertyPath: m_TagString
       value: Lantern
       objectReference: {fileID: 0}
     m_RemovedComponents: []
