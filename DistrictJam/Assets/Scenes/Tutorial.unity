@@ -4618,6 +4618,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Web
       objectReference: {fileID: 0}
+    - target: {fileID: 498196418273665418, guid: 6d55f11cf716b47458c2aacf9a8dafad, type: 3}
+      propertyPath: fireflyCost
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8237591172565472997, guid: 6d55f11cf716b47458c2aacf9a8dafad, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.76
@@ -6416,7 +6420,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This is the Mellaphone Family Heirloom passed down your squirrel heritage.
+  m_text: This is the Mellaphone Family Heirloom. It was passed down your squirrel
+    heritage.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8888,7 +8893,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Some objects in the world can be attached too no matter the direction!
+  m_text: Some objects in the world can be hooked onto no matter the direction!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9293,7 +9298,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Press left click to cast the GlowHook\u2122\n\nTry to aim for the top
+  m_text: "Press [Left Click] to cast the GlowHook\u2122\n\nTry to aim for the top
     of flat objects and jump!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9978,7 +9983,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Large falls will damage you.
 
-    Use "f" to repel from a hooked point'
+    Use [Ctrl] to repel from a hooked point'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -16242,8 +16247,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hold down right click and release as you are mid air to peform an air burst!
-    The longer you hold it, the more powerful the jump!
+  m_text: Hold down [Right Click] and release as you are mid air to peform an air
+    burst! The longer you hold it, the more powerful the jump!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -17954,6 +17959,63 @@ RectTransform:
   m_AnchoredPosition: {x: 16.071959, y: 0.882}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &1631390122
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 229216228920388503, guid: 6593a601e92b319439a9d7c0e0a6f00f, type: 3}
+      propertyPath: m_Name
+      value: Firefly (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399007054743516708, guid: 6593a601e92b319439a9d7c0e0a6f00f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 32.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399007054743516708, guid: 6593a601e92b319439a9d7c0e0a6f00f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -26.785
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399007054743516708, guid: 6593a601e92b319439a9d7c0e0a6f00f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 229.884
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399007054743516708, guid: 6593a601e92b319439a9d7c0e0a6f00f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399007054743516708, guid: 6593a601e92b319439a9d7c0e0a6f00f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399007054743516708, guid: 6593a601e92b319439a9d7c0e0a6f00f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399007054743516708, guid: 6593a601e92b319439a9d7c0e0a6f00f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399007054743516708, guid: 6593a601e92b319439a9d7c0e0a6f00f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399007054743516708, guid: 6593a601e92b319439a9d7c0e0a6f00f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399007054743516708, guid: 6593a601e92b319439a9d7c0e0a6f00f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6593a601e92b319439a9d7c0e0a6f00f, type: 3}
 --- !u!1 &1641971796
 GameObject:
   m_ObjectHideFlags: 0
@@ -18319,7 +18381,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press "w" and "s" to build momentum and jump!
+  m_text: Press [W] and [S] to build momentum and jump!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -21162,7 +21224,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Collect fireflies by throwing your lantern at them!
+  m_text: "Collect fireflies by throwing your GlowHook\u2122 at them!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -22291,7 +22353,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hold "r" to retract the rope and climb vertical obstacles!
+  m_text: Hold [Shift] to retract the rope and climb vertical obstacles!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -23288,5 +23350,6 @@ SceneRoots:
   - {fileID: 585429709}
   - {fileID: 495138549}
   - {fileID: 1282276532}
+  - {fileID: 1631390122}
   - {fileID: 1105948203}
   - {fileID: 1046488855}
