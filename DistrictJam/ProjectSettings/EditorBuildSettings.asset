@@ -9,10 +9,16 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 5aa463739fb510b44ac3e868159b406c
   - enabled: 1
-    path: Assets/DistrictJam.unity
-    guid: 0cce0ac232cf7ff478fc1d1a44b02173
-  - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Tree.unity
+    guid: a33bb0effe614ee429b62319e038041c
+  - enabled: 1
+    path: Assets/Scenes/Game Over.unity
+    guid: c065a5a3f71ebf54981c33c8470fe4e6
+  - enabled: 0
+    path: Assets/DistrictJam.unity
+    guid: 0cce0ac232cf7ff478fc1d1a44b02173
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

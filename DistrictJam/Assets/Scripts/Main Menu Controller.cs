@@ -20,6 +20,10 @@ public class MainMenuController : MonoBehaviour
     }
     public void StartGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("DistrictJam");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Tree");
+    }
+    public void StartTut()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Tutorial");
     }
 }
