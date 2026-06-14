@@ -526,18 +526,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2284615799679196292, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2768572354962639474, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3895826954529273606, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
-      propertyPath: flies
-      value: 
-      objectReference: {fileID: 452077789}
     - target: {fileID: 5533199198425443970, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
       propertyPath: pauseMenu
       value: 
@@ -615,11 +607,6 @@ GameObject:
 --- !u!1 &409887273 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8274174513296748818, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
-  m_PrefabInstance: {fileID: 409887270}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &452077789 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4378405479756706033, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
   m_PrefabInstance: {fileID: 409887270}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &472496119

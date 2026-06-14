@@ -849,6 +849,7 @@ MonoBehaviour:
   maxRopeLength: 20
   currentRopeLength: 0
   lanternMesh: {fileID: 2284615799679196292}
+  flies: {fileID: 4378405479756706033}
 --- !u!1001 &122337237405063146
 PrefabInstance:
   m_ObjectHideFlags: 0
