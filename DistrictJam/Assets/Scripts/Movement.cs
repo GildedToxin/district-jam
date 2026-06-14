@@ -54,7 +54,7 @@ public class Movement : MonoBehaviour
         }
 
         // Check if the player is grounded
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f); 
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f);
     }
 
     void FixedUpdate()
@@ -100,7 +100,7 @@ public class Movement : MonoBehaviour
         else if (!isGrounded)
         {
             // Air movement
-            rb.AddForce(moveDirection * moveSpeed/15f, ForceMode.VelocityChange);
+            rb.AddForce(moveDirection * moveSpeed / 15f, ForceMode.VelocityChange);
 
             // Air drag only in x and z
             rb.AddForce(new Vector3(-rb.linearVelocity.x * airDrag, 0f, -rb.linearVelocity.z * airDrag), ForceMode.VelocityChange);
@@ -128,8 +128,13 @@ public class Movement : MonoBehaviour
         // check tag
         if (other.gameObject.tag == "Web")
         {
-            rb.AddForce(rb.linearVelocity * -.8f, ForceMode.Impulse);
+           // rb.AddForce(rb.linearVelocity * -.8f, ForceMode.Impulse);
             print("Hit web");
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+    }
 }
+  
