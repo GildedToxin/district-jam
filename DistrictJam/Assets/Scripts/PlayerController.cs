@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     public float maxDeathTimer = 1f;
     public float currentDeathTimer = 0f;
+    public float lv = 0f;
     void FixedUpdate()
     {
         if (isDead)
@@ -36,7 +37,9 @@ public class PlayerController : MonoBehaviour
     public void PickUpItem(bool lantern, bool acorn, bool trumpet)
     {
         if (lantern) hasLantern = true;
-        if (acorn) hasAcorn = true;
+        if (acorn) Heal();
+
+
         if (trumpet) hasTrumpet = true;
     }
 
@@ -61,6 +64,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
+        lv = GetComponent<Rigidbody>().linearVelocity.y;
         if (currentWeb == null) 
             return;
 
@@ -94,11 +98,18 @@ public class PlayerController : MonoBehaviour
 
             }
         }
-        float damage = Mathf.Max(0, (-GetComponent<Rigidbody>().linearVelocity.y - safeFallVelocity) * damageMultiplier);
+        print(GetComponent<Rigidbody>().linearVelocity.y);
+        print(lv);
+        float damage = Mathf.Max(0, (lv - safeFallVelocity) * damageMultiplier);
         health -= damage;
         FindAnyObjectByType<HUD>().TakeDamage(health);
     }
 
+    public void Heal()
+    {
+        health = Mathf.Min(100, health + 20);
+        FindAnyObjectByType<HUD>().TakeDamage(health);
+    }
     private void DieRagdoll() // ragdoll but not really
     {
         float angle = camera.transform.localRotation.eulerAngles.z;

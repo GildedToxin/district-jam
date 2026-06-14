@@ -257,7 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   firefly: 0
   health: 100
-  safeFallVelocity: 6
+  safeFallVelocity: 20
   damageMultiplier: 1
   onWeb: 0
   currentWeb: {fileID: 0}
@@ -270,6 +270,9 @@ MonoBehaviour:
   deathInitialRotation: 0
   deathFinalPosition: {x: 1, y: -0.5, z: 0}
   deathFinalRotation: -90
+  maxDeathTimer: 1
+  currentDeathTimer: 0
+  lv: 0
 --- !u!114 &5681457366281003358
 MonoBehaviour:
   m_ObjectHideFlags: 0
