@@ -20,6 +20,11 @@ public class ItemPickUp : MonoBehaviour
     public bool isAcorn;
     public bool isTrumpet;
 
+
+    public bool isGold;
+    public bool isSilver;
+
+
     void Start() { 
     
         startPosition = transform.position;
@@ -41,7 +46,7 @@ public class ItemPickUp : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
 
-            collision.GetComponent<PlayerController>().PickUpItem(isLantern, isAcorn, isTrumpet);
+            collision.GetComponent<PlayerController>().PickUpItem(isLantern, isAcorn, isTrumpet, isSilver, isGold);
             Destroy(gameObject);
         }
     }

@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     public float currentDeathTimer = 0f;
     public float lv = 0f;
 
+    public bool nextScene;
+    public bool win;
     public GameObject[] gameObjects = new GameObject[3];
     void FixedUpdate()
     {
@@ -36,12 +38,23 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    public void PickUpItem(bool lantern, bool acorn, bool trumpet)
+    public void PickUpItem(bool lantern, bool acorn, bool trumpet, bool silver, bool gold)
     {
         if (lantern) hasLantern = true;
         if (acorn) Heal();
-
-
+        if(silver) SceneManager.LoadScene("MainMenu");
+        if (gold)
+        {
+            SceneManager.LoadScene("Game Over", LoadSceneMode.Additive);
+            this.transform.GetChild(1).gameObject.SetActive(false);
+            try
+            {
+                FindAnyObjectByType<Sap>().canMove = false;
+            }
+            catch { }
+            win = true;
+            nextScene = true;
+        }
         if (trumpet) hasTrumpet = true;
     }
 
@@ -83,23 +96,35 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        lv = GetComponent<Rigidbody>().linearVelocity.y;
-        if (currentWeb == null) 
-            return;
-
-        if(onWeb && firefly >= currentWeb.fireflyCost && Input.GetKeyDown(KeyCode.E))
+        if (nextScene)
         {
-            SetFirefly(firefly - currentWeb.fireflyCost);
-            currentWeb.BreakWeb();
+            try
+            {
+                FindAnyObjectByType<GameOverCanvas>().win = win;
+            }
+            catch
+            {
+
+            }
         }
+            lv = GetComponent<Rigidbody>().linearVelocity.y;
+            if (currentWeb == null)
+                return;
 
-        if (health <= 0)
-        {
-            isDead = true;
+            if (onWeb && firefly >= currentWeb.fireflyCost && Input.GetKeyDown(KeyCode.E))
+            {
+                SetFirefly(firefly - currentWeb.fireflyCost);
+                currentWeb.BreakWeb();
+            }
 
-        }
+            if (health <= 0)
+            {
+                isDead = true;
 
-        velocity = Vector3.zero;
+            }
+
+            velocity = Vector3.zero;
+        
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -147,7 +172,15 @@ public class PlayerController : MonoBehaviour
             currentDeathTimer += Time.deltaTime;
             if (currentDeathTimer > maxDeathTimer)
             {
-               SceneManager.LoadScene("Game Over");
+                SceneManager.LoadScene("Game Over", LoadSceneMode.Additive);
+                this.transform.GetChild(1).gameObject.SetActive(false);
+                try
+                {
+                    FindAnyObjectByType<Sap>().canMove = false;
+                }
+                catch { }
+                win = false;
+                nextScene = true;
             }
         }
     }
