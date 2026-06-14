@@ -1,12 +1,16 @@
+using Unity.Mathematics;
 using System.Collections;
 using UnityEngine;
 
 public class LeafScript : MonoBehaviour
-{
+{   
+    public GameObject parent;
     public float maxTimer = 3f;
     float currentTimer;
     public float rotateSpeed = 20f;
     bool hit = false;
+    private bool rotate = false;
+    private float initialRotation = 270f;
     private void Update()
     {
         if (!hit) return;
@@ -15,7 +19,13 @@ public class LeafScript : MonoBehaviour
         if(currentTimer > maxTimer)
         {
             GetComponent<MeshCollider>().enabled = false;
-            StartCoroutine(RotateLeaf());
+            Invoke("RotateLeaf", 1f);
+        }
+
+        float angle = parent.transform.rotation.eulerAngles.z - -70;
+        if (rotate && Mathf.Abs(angle) > 30f)
+        {
+            parent.transform.rotation = Quaternion.Slerp(parent.transform.rotation, Quaternion.Euler(0, 0, -70), 5f * Time.deltaTime);
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,12 +34,8 @@ public class LeafScript : MonoBehaviour
         hit = true;
     }
 
-    public IEnumerator RotateLeaf()
+    public void RotateLeaf()
     {
-        while (transform.parent.rotation.y < 360)
-        {
-            transform.parent.Rotate(Vector3.left, rotateSpeed * Time.deltaTime);
-            yield return null;
-        }
+        rotate = true;
     }
 }
