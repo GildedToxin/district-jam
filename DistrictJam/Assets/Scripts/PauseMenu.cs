@@ -45,4 +45,9 @@ public class PauseMenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("Tree");
+    }
 }
