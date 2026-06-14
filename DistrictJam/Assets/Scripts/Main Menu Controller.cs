@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class MainMenuController : MonoBehaviour
     public void StartGame()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Tree");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("VinceWorkspace", LoadSceneMode.Additive);
+
     }
     public void StartTut()
     {
