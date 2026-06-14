@@ -1,6 +1,7 @@
-using Unity.Mathematics;
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
+using static GrapplingGun;
 
 public class LeafScript : MonoBehaviour
 {   
@@ -11,6 +12,7 @@ public class LeafScript : MonoBehaviour
     bool hit = false;
     private bool rotate = false;
     private float initialRotation = 270f;
+    private bool once = true;
     private void Update()
     {
         if (!hit) return;
@@ -18,7 +20,14 @@ public class LeafScript : MonoBehaviour
         currentTimer += Time.deltaTime;
         if(currentTimer > maxTimer)
         {
-            GetComponent<MeshCollider>().enabled = false;
+            //GetComponent<MeshCollider>().enabled = false;
+            if (once)
+            {
+                FindAnyObjectByType<GrapplingGun>().CurrentGrapplePhase = GrapplingGun.GrapplePhase.Retracting;
+                once = false;
+                var temp = FindAnyObjectByType<GrapplingGun>();
+                //temp.Phase();
+            }
             Invoke("RotateLeaf", 1f);
         }
 

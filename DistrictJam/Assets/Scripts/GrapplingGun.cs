@@ -127,7 +127,10 @@ public class GrapplingGun : MonoBehaviour
             }
         }
     }
-
+    public void Phase()
+    {
+        GrapplePhaseChanged?.Invoke(GrapplePhase.Waiting);
+    }
     private void FixedUpdate()
     {
         if (_isApplyingGrappleForces )
