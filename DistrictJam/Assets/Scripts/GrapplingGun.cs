@@ -43,6 +43,7 @@ public class GrapplingGun : MonoBehaviour
     private bool _holdingLetOut;
 
     public MeshRenderer lanternMesh;
+    public GameObject flies;
     public void LaunchFinished(bool isLaunchSuccessful, Vector3 grapplePoint)
     {
         if (CurrentGrapplePhase != GrapplePhase.Launching)
@@ -67,6 +68,7 @@ public class GrapplingGun : MonoBehaviour
     private void Start()
     {
         lanternMesh.enabled = false;
+        flies.SetActive(false);
         _playerMovement = transform.parent.GetComponentInParent<Movement>();
         _playerRigidbody = transform.parent.GetComponentInParent<Rigidbody>();
 
@@ -85,6 +87,7 @@ public class GrapplingGun : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && CurrentGrapplePhase == GrapplePhase.Waiting)
         {
             lanternMesh.enabled = true;
+            flies.SetActive(true);
             CurrentGrapplePhase = GrapplePhase.Launching;
             GrapplePhaseChanged?.Invoke(GrapplePhase.Waiting);
         }
@@ -214,6 +217,7 @@ public class GrapplingGun : MonoBehaviour
         CurrentGrapplePhase = GrapplePhase.Waiting;
         GrapplePhaseChanged?.Invoke(GrapplePhase.Retracting);
         lanternMesh.enabled = false;
+        flies.SetActive(false);
     }
 
 

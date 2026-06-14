@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public float maxDeathTimer = 1f;
     public float currentDeathTimer = 0f;
     public float lv = 0f;
+
+    public GameObject[] gameObjects = new GameObject[3];
     void FixedUpdate()
     {
         if (isDead)
@@ -54,6 +56,15 @@ public class PlayerController : MonoBehaviour
         FindAnyObjectByType<HUD>().AddFirefly(firefly);
         if(currentWeb != null && onWeb)
             currentWeb.CheckWeb(this);
+
+        foreach (GameObject obj in gameObjects)
+        {
+            if (obj != null)
+                obj.SetActive(false);
+        }
+
+        if (firefly > 0)
+            gameObjects[Mathf.Min(3, firefly) - 1].SetActive(true);
     }
     public void SetFirefly(int amount)
     {
@@ -61,6 +72,14 @@ public class PlayerController : MonoBehaviour
         FindAnyObjectByType<HUD>().AddFirefly(firefly);
         if (currentWeb != null && onWeb)
             currentWeb.CheckWeb(this);
+
+        foreach (GameObject obj in gameObjects)
+        {
+            if (obj != null)
+                obj.SetActive(false);
+        }
+        if(firefly > 0)
+            gameObjects[Mathf.Min(3, firefly) - 1].SetActive(true);
     }
     private void Update()
     {

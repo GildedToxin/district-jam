@@ -526,10 +526,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2284615799679196292, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2768572354962639474, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3895826954529273606, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
+      propertyPath: flies
+      value: 
+      objectReference: {fileID: 452077789}
     - target: {fileID: 5533199198425443970, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
       propertyPath: pauseMenu
       value: 
@@ -542,6 +550,18 @@ PrefabInstance:
       propertyPath: hasTrumpet
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7773933456281889026, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
+      propertyPath: 'gameObjects.Array.data[0]'
+      value: 
+      objectReference: {fileID: 409887273}
+    - target: {fileID: 7773933456281889026, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
+      propertyPath: 'gameObjects.Array.data[1]'
+      value: 
+      objectReference: {fileID: 409887272}
+    - target: {fileID: 7773933456281889026, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
+      propertyPath: 'gameObjects.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1347556881}
     - target: {fileID: 7948344374039633403, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -587,6 +607,21 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
+--- !u!1 &409887272 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5692614590752632585, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
+  m_PrefabInstance: {fileID: 409887270}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &409887273 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8274174513296748818, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
+  m_PrefabInstance: {fileID: 409887270}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &452077789 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4378405479756706033, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
+  m_PrefabInstance: {fileID: 409887270}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &472496119
 GameObject:
   m_ObjectHideFlags: 0
@@ -2092,6 +2127,11 @@ Transform:
   - {fileID: 745608919}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1347556881 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7262413857095132505, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
+  m_PrefabInstance: {fileID: 409887270}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1352918304
 GameObject:
   m_ObjectHideFlags: 0
@@ -2142,7 +2182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.9722115, b: 0.9575472, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2887,7 +2927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.9722115, b: 0.9575472, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
