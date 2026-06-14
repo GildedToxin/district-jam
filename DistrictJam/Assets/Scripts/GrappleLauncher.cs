@@ -116,7 +116,27 @@ public class GrappleLauncher : MonoBehaviour
             }
         }
 
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Web")){
 
+
+               WebBox web = collision.gameObject.transform.root.GetComponentInChildren<WebBox>();
+
+            if (web == null)
+                web = collision.gameObject.GetComponent<WebBox>();
+            if(web == null)
+                web = collision.gameObject.GetComponentInChildren<WebBox>();
+            if (web == null)    
+                web = collision.gameObject.GetComponentInParent<WebBox>();
+
+
+            print(web);
+            print(collision.gameObject.GetComponent<WebBox>());
+            print(collision.gameObject.GetComponentInChildren<WebBox>());
+            print(collision.gameObject.GetComponentInParent<WebBox>());
+
+            FindAnyObjectByType<PlayerController>().currentWeb = web;
+            FindAnyObjectByType<PlayerController>().BurnThrow();
+        }
         if (collision.gameObject.layer == LayerMask.NameToLayer("Firefly"))
         {
             Destroy(collision.gameObject);

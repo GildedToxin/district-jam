@@ -37,12 +37,12 @@ public class PlayerController : MonoBehaviour
             DieRagdoll();
         }
     }
-    
+
     public void PickUpItem(bool lantern, bool acorn, bool trumpet, bool silver, bool gold)
     {
         if (lantern) hasLantern = true;
         if (acorn) Heal();
-        if(silver) SceneManager.LoadScene("MainMenu");
+        if (silver) SceneManager.LoadScene("MainMenu");
         if (gold)
         {
             SceneManager.LoadScene("Game Over", LoadSceneMode.Additive);
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
     {
         firefly++;
         FindAnyObjectByType<HUD>().AddFirefly(firefly);
-        if(currentWeb != null && onWeb)
+        if (currentWeb != null && onWeb)
             currentWeb.CheckWeb(this);
 
         foreach (GameObject obj in gameObjects)
@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
             if (obj != null)
                 obj.SetActive(false);
         }
-        if(firefly > 0)
+        if (firefly > 0)
             gameObjects[Mathf.Min(3, firefly) - 1].SetActive(true);
     }
     private void Update()
@@ -107,26 +107,33 @@ public class PlayerController : MonoBehaviour
 
             }
         }
-            lv = GetComponent<Rigidbody>().linearVelocity.y;
-            if (currentWeb == null)
-                return;
+        lv = GetComponent<Rigidbody>().linearVelocity.y;
+        if (currentWeb == null)
+            return;
 
-            if (onWeb && firefly >= currentWeb.fireflyCost && Input.GetKeyDown(KeyCode.E))
-            {
-                SetFirefly(firefly - currentWeb.fireflyCost);
-                currentWeb.BreakWeb();
-            }
+        if (onWeb && firefly >= currentWeb.fireflyCost && Input.GetKeyDown(KeyCode.E))
+        {
+            SetFirefly(firefly - currentWeb.fireflyCost);
+            currentWeb.BreakWeb();
+        }
 
-            if (health <= 0)
-            {
-                isDead = true;
+        if (health <= 0)
+        {
+            isDead = true;
 
-            }
+        }
 
-            velocity = Vector3.zero;
-        
+        velocity = Vector3.zero;
+
     }
-    private void OnCollisionEnter(Collision collision)
+    public void BurnThrow (){
+        if (firefly >= currentWeb.fireflyCost)
+        {
+            SetFirefly(firefly - currentWeb.fireflyCost);
+            currentWeb.BreakWeb();
+        }
+    }
+private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponentInParent<PlayerController>() || collision.gameObject.CompareTag("Lantern")){
             return;

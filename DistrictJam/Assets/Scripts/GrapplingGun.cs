@@ -81,8 +81,8 @@ public class GrapplingGun : MonoBehaviour
     {
         if(FindAnyObjectByType<PlayerController>().hasLantern == false)
             return;
-        _holdingLetOut = Input.GetKey(KeyCode.F);
-        _holdingReelIn = Input.GetKey(KeyCode.R);
+        _holdingLetOut = Input.GetKey(KeyCode.LeftControl);
+        _holdingReelIn = Input.GetKey(KeyCode.LeftShift);
         currentRopeLength = (_launcherTransform.position- _playerRigidbody.position).magnitude;
         if (Input.GetMouseButtonDown(0) && CurrentGrapplePhase == GrapplePhase.Waiting)
         {
