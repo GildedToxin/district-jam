@@ -69,9 +69,6 @@ public class Movement : MonoBehaviour
 
     private void Move()
     {
-       
-
-
         // Movement logic
         if (isGrounded)
         {
@@ -124,5 +121,15 @@ public class Movement : MonoBehaviour
     {
         // Jumping logic
         rb.AddForce(Vector3.up * jumpForce);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        // check tag
+        if (other.gameObject.tag == "Web")
+        {
+            rb.AddForce(rb.linearVelocity * -.8f, ForceMode.Impulse);
+            print("Hit web");
+        }
     }
 }
