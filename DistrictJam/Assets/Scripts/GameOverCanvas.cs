@@ -23,6 +23,11 @@ public class GameOverCanvas : MonoBehaviour
         losePanel.SetActive(false);
         thankyou.SetActive(false);
         text.gameObject.SetActive(false);
+        try
+        {
+            FindAnyObjectByType<HUD>().gameObject.SetActive(false);
+        }
+        catch { }
     }
 
     // Update is called once per frame
