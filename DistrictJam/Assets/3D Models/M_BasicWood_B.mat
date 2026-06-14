@@ -61,7 +61,7 @@ Material:
     - _UseBlendingNoise: 1
     - _Variation: 0.428
     m_Colors:
-    - _BaseColor: {r: 0.44654083, g: 0.29890084, b: 0.14182582, a: 1}
+    - _BaseColor: {r: 0.69182384, g: 0.47454807, b: 0.24583672, a: 1}
     - _VariationColorA: {r: 0.7169812, g: 0.11949679, b: 0.11949679, a: 0}
     - _VariationColorB: {r: 0.72641504, g: 0.8027643, b: 1, a: 0}
   m_BuildTextureStacks: []
