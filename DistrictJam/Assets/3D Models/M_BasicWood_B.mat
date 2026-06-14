@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_BigBranch_A
+  m_Name: M_BasicWood_B
   m_Shader: {fileID: -6465566751694194690, guid: d2f91465ec99a41cca1de94d4dce60e0, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -29,7 +29,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BC_rgb_smoothness_a:
-        m_Texture: {fileID: 2800000, guid: 8d6bcb82ee6d5ca448d3a278a3f2db25, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PainterlyMask_nrm_r_colVar_g:
@@ -56,14 +56,14 @@ Material:
     - _Smoothness: 0
     - _StrokeBlendingNoiseScale: 96.23
     - _StrokeBlendingNoiseStrength: 0.29
-    - _StrokeRandomness: 0.07
+    - _StrokeRandomness: 0.314
     - _StrokeScale: 4.3
     - _UseBlendingNoise: 1
-    - _Variation: 0.574
+    - _Variation: 0.428
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
-    - _VariationColorA: {r: 1, g: 0.00000019073488, b: 0, a: 0}
-    - _VariationColorB: {r: 0.83333325, g: 0.8777236, b: 1, a: 0}
+    - _BaseColor: {r: 0.44654083, g: 0.29890084, b: 0.14182582, a: 1}
+    - _VariationColorA: {r: 0.7169812, g: 0.11949679, b: 0.11949679, a: 0}
+    - _VariationColorB: {r: 0.72641504, g: 0.8027643, b: 1, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &4624426879554408142
