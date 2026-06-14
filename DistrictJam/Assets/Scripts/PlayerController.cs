@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponentInParent<PlayerController>()){
+        if (collision.gameObject.GetComponentInParent<PlayerController>() || collision.gameObject.CompareTag("Lantern")){
             return;
         }
         var hitTop = false;

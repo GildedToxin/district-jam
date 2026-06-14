@@ -549,9 +549,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 339011900814671185, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
+      propertyPath: m_TagString
+      value: Lantern
+      objectReference: {fileID: 0}
     - target: {fileID: 2768572354962639474, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495924389559475290, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
+      propertyPath: m_TagString
+      value: Lantern
       objectReference: {fileID: 0}
     - target: {fileID: 5533199198425443970, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
       propertyPath: pauseMenu
