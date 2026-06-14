@@ -9,12 +9,12 @@ public class HUD : MonoBehaviour
 {
     public TextMeshProUGUI fireflyText;
     public TextMeshProUGUI infoText;
-    public Slider slider;
+    public Image slider;
     public GameObject blackPanel;
 
     private void Start()
     {
-        slider.value = 1;
+       slider.fillAmount = 1;
     }
 
     public void AddFirefly(int fireflyCount)
@@ -24,7 +24,7 @@ public class HUD : MonoBehaviour
 
     public void TakeDamage(float health, float maxHealth = 100)
     {
-        slider.value = health / maxHealth;
+       slider.fillAmount = health / maxHealth;
     }
 
     public void SetInfoText(string text)
