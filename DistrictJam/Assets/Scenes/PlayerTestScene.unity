@@ -557,6 +557,14 @@ PrefabInstance:
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 1006830537}
+    - target: {fileID: 7773933456281889026, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
+      propertyPath: hasLantern
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7773933456281889026, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
+      propertyPath: hasTrumpet
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7948344374039633403, guid: c7e1ad0a736550f45b7f9fceb0994d12, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2927,6 +2935,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 990722343592286444, guid: 2e2147621fc2fd94f8f78b1710064074, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 50fd49727cfdd114dafacb0334fdb99f, type: 2}
     - target: {fileID: 2770218426158038789, guid: 2e2147621fc2fd94f8f78b1710064074, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.67
