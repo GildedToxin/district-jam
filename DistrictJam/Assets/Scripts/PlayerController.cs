@@ -108,10 +108,8 @@ public class PlayerController : MonoBehaviour
             }
         }
         lv = GetComponent<Rigidbody>().linearVelocity.y;
-        if (currentWeb == null)
-            return;
 
-        if (onWeb && firefly >= currentWeb.fireflyCost && Input.GetKeyDown(KeyCode.E))
+        if (currentWeb != null && onWeb && firefly >= currentWeb.fireflyCost && Input.GetKeyDown(KeyCode.E))
         {
             SetFirefly(firefly - currentWeb.fireflyCost);
             currentWeb.BreakWeb();
@@ -138,20 +136,12 @@ private void OnCollisionEnter(Collision collision)
         if (collision.gameObject.GetComponentInParent<PlayerController>() || collision.gameObject.CompareTag("Lantern")){
             return;
         }
-        var hitTop = false;
-        foreach (ContactPoint contact in collision.contacts)
-        {
-            // Surface is facing upward
-            if (Vector3.Dot(contact.normal, Vector3.up) > 0.9f)
-            {
-
-                hitTop = true;
-
-            }
-        }
+       
         print(GetComponent<Rigidbody>().linearVelocity.y);
         print(lv);
-        float damage = Mathf.Max(0, (lv - safeFallVelocity) * damageMultiplier);
+     
+        float damage = Mathf.Max(0, (Mathf.Abs(lv) - safeFallVelocity) * damageMultiplier);
+        print(damage);
         health -= damage;
         FindAnyObjectByType<HUD>().TakeDamage(health);
     }
@@ -161,25 +151,21 @@ private void OnCollisionEnter(Collision collision)
         health = Mathf.Min(100, health + 20);
         FindAnyObjectByType<HUD>().TakeDamage(health);
     }
+    public float timer2 = 0f;
+    public float maxTimer2 = 1f;
     private void DieRagdoll() // ragdoll but not really
     {
-        float angle = camera.transform.localRotation.eulerAngles.z;
-        if (Vector3.Distance(camera.transform.localPosition, deathFinalPosition) > 0.1f)
-        {
-            camera.transform.localPosition = Vector3.SmoothDamp(camera.transform.localPosition, deathFinalPosition,ref velocity, .5f);
-            
-            float vel = 2f;
-            camera.transform.localRotation = Quaternion.Euler(new Vector3(camera.transform.localRotation.eulerAngles.x, camera.transform.localRotation.eulerAngles.y, 
-            Mathf.SmoothDamp(camera.transform.localRotation.eulerAngles.z, deathFinalRotation, ref vel, .5f)));
-        }
-        else
+        timer2 += Time.deltaTime;
+
+        if (timer2 > maxTimer2)
         {
             if (currentDeathTimer == 0)
                 FindAnyObjectByType<HUD>().FadeBlack();
             currentDeathTimer += Time.deltaTime;
             if (currentDeathTimer > maxDeathTimer)
             {
-                SceneManager.LoadScene("Game Over", LoadSceneMode.Additive);
+                if(SceneManager.GetSceneByName("Game Over").isLoaded == false)
+                    SceneManager.LoadScene("Game Over", LoadSceneMode.Additive);
                 this.transform.GetChild(1).gameObject.SetActive(false);
                 try
                 {
@@ -190,5 +176,18 @@ private void OnCollisionEnter(Collision collision)
                 nextScene = true;
             }
         }
+        else
+        {
+            float angle = camera.transform.localRotation.eulerAngles.z;
+            if (Vector3.Distance(camera.transform.localPosition, deathFinalPosition) > 0.1f)
+            {
+                camera.transform.localPosition = Vector3.SmoothDamp(camera.transform.localPosition, deathFinalPosition, ref velocity, .5f);
+
+                float vel = 2f;
+                camera.transform.localRotation = Quaternion.Euler(new Vector3(camera.transform.localRotation.eulerAngles.x, camera.transform.localRotation.eulerAngles.y,
+                Mathf.SmoothDamp(camera.transform.localRotation.eulerAngles.z, deathFinalRotation, ref vel, .5f)));
+            }
+        }
+        
     }
 }
